@@ -34,7 +34,6 @@ type Msg
     = SetReviews (List Review)
     | PrevReview
     | NextReview
-    | SetReviewIndex Int
 
 
 nav_link : String -> String -> Html Msg
@@ -116,6 +115,11 @@ heroButton href name =
     a [ Attr.href href, css [ Tw.mx_3, Tw.mt_2, Tw.bg_color Tc.indigo_500, textDecoration none, Tw.text_color Tc.white, Tw.font_sans, Tw.rounded, Tw.border_none, Tw.px_6, Tw.py_4, Tw.font_bold, Tw.shadow_md, Tb.md [ mText ], fontSize (rem 0.9) ] ] [ text name ]
 
 
+heroMobileButton : String -> String -> Html Msg
+heroMobileButton href name =
+    a [ Attr.href href, css [ Tb.md [ display none ], Tw.mx_3, Tw.mt_2, Tw.bg_color Tc.indigo_500, textDecoration none, Tw.text_color Tc.white, Tw.font_sans, Tw.rounded, Tw.border_none, Tw.px_6, Tw.py_4, Tw.font_bold, Tw.shadow_md, Tb.md [ mText ], fontSize (rem 0.9) ] ] [ text name ]
+
+
 callToAction : Html Msg
 callToAction =
     div [ css [ Tw.mx_2, Tw.items_center, Tw.flex, Tw.flex_col, Tw.content_center, justifyContent center, textAlign center, Tw.flex_grow ] ]
@@ -123,7 +127,7 @@ callToAction =
         , h2 [ css [ Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_200, Tw.font_sans ] ] [ text "Expert driving instruction, personalised." ]
         , h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_200, Tw.font_sans ] ] [ text "One hour lessons: $75 on weekdays, $80 on weekends." ]
         , div [ css [ Tw.flex, Tw.content_center ] ]
-            [ heroButton "sms:021440260" "Book Via SMS"
+            [ heroMobileButton "sms:021440260" "Book Via SMS"
             , heroButton "mailto:lessons@karoridrivingschool.co.nz" "Book Via Email"
             ]
         ]
@@ -355,16 +359,13 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         SetReviews rs ->
-            ( { model | reviews = A.fromList rs }, Random.generate SetReviewIndex (Random.int 0 (List.length rs - 1)) )
+            ( { model | reviews = A.fromList rs, reviewIndex = 0 }, Cmd.none )
 
         NextReview ->
             ( { model | reviewIndex = modBy (A.length model.reviews) (model.reviewIndex + 1) }, Cmd.none )
 
         PrevReview ->
             ( { model | reviewIndex = modBy (A.length model.reviews) (model.reviewIndex - 1) }, Cmd.none )
-
-        SetReviewIndex ind ->
-            ( { model | reviewIndex = ind }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
