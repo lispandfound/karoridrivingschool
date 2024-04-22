@@ -11,7 +11,6 @@ import Html.Styled.Attributes as Attr exposing (css)
 import Html.Styled.Events exposing (onClick)
 import Http
 import Json.Decode as D exposing (Decoder)
-import Random
 import Tailwind.Breakpoints as Tb
 import Tailwind.Theme as Tc
 import Tailwind.Utilities as Tw
@@ -112,12 +111,12 @@ point heading body =
 
 heroButton : String -> String -> Html Msg
 heroButton href name =
-    a [ Attr.href href, css [ Tw.mx_3, Tw.mt_2, Tw.bg_color Tc.indigo_500, textDecoration none, Tw.text_color Tc.white, Tw.font_sans, Tw.rounded, Tw.border_none, Tw.px_6, Tw.py_4, Tw.font_bold, Tw.shadow_md, Tb.md [ mText ], fontSize (rem 0.9) ] ] [ text name ]
+    a [ Attr.href href, css [ Tw.mx_3, Tw.mt_2, Tw.bg_color Tc.blue_600, textDecoration none, Tw.text_color Tc.white, Tw.font_sans, Tw.rounded, Tw.border_none, Tw.px_6, Tw.py_4, Tw.font_bold, Tw.shadow_md, Tb.md [ mText ], fontSize (rem 0.9) ] ] [ text name ]
 
 
 heroMobileButton : String -> String -> Html Msg
 heroMobileButton href name =
-    a [ Attr.href href, css [ Tb.md [ display none ], Tw.mx_3, Tw.mt_2, Tw.bg_color Tc.indigo_500, textDecoration none, Tw.text_color Tc.white, Tw.font_sans, Tw.rounded, Tw.border_none, Tw.px_6, Tw.py_4, Tw.font_bold, Tw.shadow_md, Tb.md [ mText ], fontSize (rem 0.9) ] ] [ text name ]
+    a [ Attr.href href, css [ Tb.md [ display none ], Tw.mx_3, Tw.mt_2, Tw.bg_color Tc.blue_600, textDecoration none, Tw.text_color Tc.white, Tw.font_sans, Tw.rounded, Tw.border_none, Tw.px_6, Tw.py_4, Tw.font_bold, Tw.shadow_md, Tb.md [ mText ], fontSize (rem 0.9) ] ] [ text name ]
 
 
 callToAction : Html Msg
@@ -135,7 +134,7 @@ callToAction =
 
 blendedStyle : Style
 blendedStyle =
-    property "background-image" "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(\"/hero.jpg\")"
+    property "background-image" "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(\"/hero.webp\")"
 
 
 hero : Html Msg
@@ -168,7 +167,7 @@ aboutMe =
     div [ Attr.id "about", css [ Tw.mt_7, Tw.mx_6 ] ]
         [ h1 [ h1Std, css [ Tw.mb_0 ] ] [ text "Your Driving Instructor" ]
         , div [ css [ Tw.my_4, Tw.mr_3 ] ]
-            [ img [ Attr.src "/marcel.jpg", css [ Tw.w_full, Tb.md [ Tw.w_3over5 ], marginLeft auto, marginRight auto, display block ], Attr.alt "Marcel, your driving instructor, standing beside the Karori Driving School vehicle." ] []
+            [ img [ Attr.src "/marcel.webp", css [ Tw.w_full, Tb.md [ Tw.w_3over5 ], marginLeft auto, marginRight auto, display block ], Attr.alt "Marcel, your driving instructor, standing beside the Karori Driving School vehicle." ] []
             , div [] (List.map (\msg -> p [ pStd ] [ text msg ]) aboutMsg)
             ]
         ]
@@ -185,7 +184,7 @@ aboutCar =
     div [ Attr.id "car", css [ Tw.mt_7, Tw.mx_6 ] ]
         [ h1 [ h1Std, css [ Tw.mb_0 ] ] [ text "The Car" ]
         , div [ css [ Tb.md [ Tw.flex, Css.flexDirection Css.rowReverse ], Tw.my_4, Tw.mr_3 ] ]
-            [ img [ Attr.src "/car.jpg", Attr.alt "A white Toyota Aqua with Karori Driving School signage parked on the side of a road.", css [ Tw.w_full, Tb.md [ width (px 500) ] ] ] []
+            [ img [ Attr.src "/car.webp", Attr.alt "A white Toyota Aqua with Karori Driving School signage parked on the side of a road.", css [ Tw.w_full, Tb.md [ width (px 500) ] ] ] []
             , div [] (List.map (\msg -> p [ pStd ] [ msg ]) carMsg)
             ]
         ]
@@ -213,7 +212,7 @@ aboutLessons =
         [ h1 [ h1Std, css [ Tw.mb_0 ] ] [ text "The Lessons" ]
         , div [ css [ Tw.my_4, Tw.mr_3 ] ]
             [ div []
-                [ img [ Attr.src "/student.jpg", Attr.alt "Me and a student in my car, mid-lesson, smiling.", css [ Tw.w_full, Tb.md [ Tw.w_3over5 ], marginLeft auto, marginRight auto, display block ] ] []
+                [ img [ Attr.src "/student.webp", Attr.alt "Me and a student in my car, mid-lesson, smiling.", css [ Tw.w_full, Tb.md [ Tw.w_3over5 ], marginLeft auto, marginRight auto, display block ] ] []
                 , div [] (List.map (\msg -> p [ pStd ] [ msg ]) lessonsMsg)
                 ]
             ]
@@ -279,7 +278,7 @@ getInTouch =
                 [ Icon.envelopeOpen |> Icon.styled [] |> Icon.view |> fromUnstyled
                 , a [ Attr.href "mailto:lessons@karoridrivingschool.co.nz", css [ Tw.ml_2 ] ] [ text "lessons@karoridrivingschool.co.nz" ]
                 ]
-            , span [ css [ Tw.font_bold ], pStd ]
+            , span [ css [ Tw.font_bold, Tw.mt_4, Tb.md [ Tw.mt_0 ] ], pStd ]
                 [ Icon.phone |> Icon.view |> fromUnstyled
                 , a [ Attr.href "sms:021440260", css [ Tw.ml_2 ] ] [ text "021440260" ]
                 ]
@@ -328,8 +327,8 @@ reviewCarousel model =
             Nothing ->
                 div [] []
         , div [ css [ Tw.mx_6, Tw.flex, Tw.justify_center ] ]
-            [ button [ css [ Tw.mr_3, Tw.px_3, Tw.py_1, width (px 150) ], onClick PrevReview ] [ Icon.arrowLeft |> Icon.styled [] |> Icon.view |> fromUnstyled ]
-            , button [ css [ Tw.px_3, Tw.py_1, width (px 150) ], onClick NextReview ] [ Icon.arrowRight |> Icon.styled [] |> Icon.view |> fromUnstyled ]
+            [ button [ css [ Tw.mr_3, Tw.px_3, Tw.py_1, width (px 150) ], Attr.attribute "aria-label" "Next Review", onClick PrevReview ] [ Icon.arrowLeft |> Icon.styled [] |> Icon.view |> fromUnstyled ]
+            , button [ css [ Tw.px_3, Tw.py_1, width (px 150) ], Attr.attribute "aria-label" "Previous Review", onClick NextReview ] [ Icon.arrowRight |> Icon.styled [] |> Icon.view |> fromUnstyled ]
             ]
         ]
 
