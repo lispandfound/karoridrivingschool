@@ -157,8 +157,9 @@ hero =
 
 aboutMsg : List String
 aboutMsg =
-    [ "Hi, my name is Marcel. I’m a dad to two teenage daughters. Karori has been my home since 2007. Prior to becoming an instructor, I was working in the TV-news industry. I now enjoy running my own driving school business full time. I lived in Switzerland for 6 years and speak German/Swiss German as a second language."
-    , "I'm a calm, friendly, and qualified instructor that coaches driving in a positive way. I aim to make each lesson a fun and enjoyable hour. My driving experience stretches back more than 30 years, and I have been instructing since 2020. My students have a very high pass rate, you can trust me to prepare you with confidence for your test. "
+    [
+     "Hi, my name is Marcel. I'm a calm, friendly, and qualified instructor that coaches driving in a positive way. I aim to make each lesson a fun and enjoyable hour. My driving experience stretches back more than 30 years, and I have been instructing since 2020. My students have a very high pass rate so you can trust me to prepare you with confidence for your test."
+    , "I’m a dad to two teenage daughters. Karori has been my home since 2007. Prior to becoming an instructor, I was working in the TV-news industry. I now enjoy running my own driving school business full time. I lived in Switzerland for part of my life and speak German/Swiss German as a second language."
     ]
 
 
