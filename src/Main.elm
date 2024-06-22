@@ -121,12 +121,11 @@ heroMobileButton href name =
 
 callToAction : Html Msg
 callToAction =
-    div [ css [ Tw.mx_2, Tw.items_center, Tw.flex, Tw.flex_col, Tw.content_center, justifyContent center, textAlign center, Tw.flex_grow ] ]
+    div [ css [ Tw.mx_2, Tw.mt_8, Tw.items_center, Tw.flex, Tw.flex_col, Tw.content_center, justifyContent center, textAlign center, Tw.flex_grow ] ]
         [
-         img [Attr.src "/logo.svg", css [ maxWidth (px 400)], Attr.alt "Karori Driving School"] []
-        -- , h1 [ h1Std, css [ Tw.mb_0, Tw.font_extrabold, fontSize (rem 2), Tb.md [ fontSize (rem 6) ], Tw.text_color Tc.white, Tw.font_sans ] ] [ text "Karori Driving School" ]
-        , h2 [ css [ Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_200, Tw.font_sans ] ] [ text "Expert driving instruction, personalised." ]
-        , h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_200, Tw.font_sans ] ] [ text "One hour lessons: $75 on weekdays, $80 on weekends." ]
+        
+        h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_800, paddingLeft (px 10), paddingRight (px 10), Tw.font_sans ] ] [ text "One Hour Lessons" ]
+        , h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_800, paddingLeft (px 10), paddingRight (px 10), Tw.font_sans ] ] [ text "$75 on weekdays, $80 on weekends." ]
         , div [ css [ Tw.flex, Tw.content_center ] ]
             [ heroMobileButton "sms:021440260" "Book Via SMS"
             , heroButton "mailto:lessons@karoridrivingschool.co.nz" "Book Via Email"
@@ -136,7 +135,9 @@ callToAction =
 
 blendedStyle : Style
 blendedStyle =
-    property "background-image" "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(\"/hero.webp\")"
+    property "background-image" "url(\"/hero.webp\")"
+
+                      
 
 
 hero : Html Msg
@@ -145,17 +146,23 @@ hero =
         [ css
             [ Tw.relative
             , height (vh 60)
+            , Tb.md [ height (vh 80) ]
             , Tw.w_full
+            , Tb.md [maxWidth (px 1200)]
             , Tw.bg_cover
             , Tw.bg_center
             , blendedStyle
+            
             , Tw.flex
             , Tw.flex_col
             ]
         ]
-        [ callToAction
+        [
+          div [css [Tw.flex, justifyContent center, backgroundGradient, minHeight (pct 30)]] [img [Attr.src "/logo.svg", css [ paddingLeft (px 10), paddingRight (px 10), maxWidth (px 800)], Attr.alt "Karori Driving School"] []]
         ]
 
+backgroundGradient : Style
+backgroundGradient = property "background-image" "linear-gradient(rgba(255,255,255,1), rgba(255, 255, 255, 0.6) 80%, rgba(255,255,255, 0))"
 
 aboutMsg : List String
 aboutMsg =
@@ -341,6 +348,7 @@ view model =
     div [ css [ Tb.md [ Tw.flex, Tw.flex_col, width (pct 100) ], Tw.items_center, Tw.font_sans ] ]
         [ faCss
         , hero
+        , callToAction
         , div [ css [ Tb.lg [ width (px 1024) ] ] ]
             [ 
             aboutMe
