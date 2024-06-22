@@ -122,7 +122,9 @@ heroMobileButton href name =
 callToAction : Html Msg
 callToAction =
     div [ css [ Tw.mx_2, Tw.items_center, Tw.flex, Tw.flex_col, Tw.content_center, justifyContent center, textAlign center, Tw.flex_grow ] ]
-        [ h1 [ h1Std, css [ Tw.mb_0, Tw.font_extrabold, fontSize (rem 2), Tb.md [ fontSize (rem 6) ], Tw.text_color Tc.white, Tw.font_sans ] ] [ text "Karori Driving School" ]
+        [
+         img [Attr.src "/logo.svg", css [ maxWidth (px 400)], Attr.alt "Karori Driving School"] []
+        -- , h1 [ h1Std, css [ Tw.mb_0, Tw.font_extrabold, fontSize (rem 2), Tb.md [ fontSize (rem 6) ], Tw.text_color Tc.white, Tw.font_sans ] ] [ text "Karori Driving School" ]
         , h2 [ css [ Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_200, Tw.font_sans ] ] [ text "Expert driving instruction, personalised." ]
         , h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_200, Tw.font_sans ] ] [ text "One hour lessons: $75 on weekdays, $80 on weekends." ]
         , div [ css [ Tw.flex, Tw.content_center ] ]
@@ -340,15 +342,16 @@ view model =
         [ faCss
         , hero
         , div [ css [ Tb.lg [ width (px 1024) ] ] ]
-            [ reviewCarousel model
-            , rule
-            , aboutMe
+            [ 
+            aboutMe
             , rule
             , aboutCar
             , rule
             , aboutLessons
             , rule
             , aboutAvailability
+            , rule
+            , reviewCarousel model
             , rule
             , getInTouch
             ]
