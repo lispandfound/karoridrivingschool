@@ -158,7 +158,7 @@ hero =
             ]
         ]
         [
-          div [css [Tw.flex, justifyContent center, backgroundGradient, Tb.sm [width (pct 100)], Tb.md [minHeight (pct 30)] ]] [img [Attr.src "/logo.svg", css [ paddingLeft (px 10), paddingRight (px 10), paddingTop (px 10), maxWidth (px 800)], Attr.alt "Karori Driving School"] []]
+          div [css [Tw.flex, justifyContent center, backgroundGradient, Tb.sm [width (pct 100)], Tb.md [minHeight (pct 30)] ]] [img [Attr.src "/logo.svg", css [ paddingLeft (px 10), paddingRight (px 10), paddingTop (px 10), paddingBottom (px 20), maxWidth (px 800)], Attr.alt "Karori Driving School"] []]
         ]
 
 backgroundGradient : Style
