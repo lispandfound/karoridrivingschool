@@ -202,7 +202,7 @@ aboutCar =
 
 lessonsMsg : List (Html Msg)
 lessonsMsg =
-    [ text "Lessons are tailed to any skill level from the first time behind the wheel to overseas license conversion lessons. Pick up and drop off from your address or place of choice. Covering suburbs including:"
+    [ text "Lessons are tailored to any skill level from the first time behind the wheel to overseas license conversion lessons. Pick up and drop off from your address or place of choice. Covering suburbs including:"
     , ul []
         [ li [] [ text "Karori" ]
         , li [] [ text "Wilton" ]
