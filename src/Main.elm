@@ -125,7 +125,7 @@ callToAction =
         [
         
         h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_800, paddingLeft (px 10), paddingRight (px 10), Tw.font_sans ] ] [ text "One Hour Lessons" ]
-        , h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_800, paddingLeft (px 10), paddingRight (px 10), Tw.font_sans ] ] [ text "$75 on weekdays, $80 on weekends." ]
+        , h2 [ css [ Tw.mt_0, Tw.font_extrabold, fontSize (rem 1), Tb.md [ fontSize (rem 2) ], Tw.text_color Tc.gray_800, paddingLeft (px 10), paddingRight (px 10), Tw.font_sans ] ] [ text "$80 for adults and $75 students." ]
         , div [ css [ Tw.flex, Tw.content_center ] ]
             [ heroMobileButton "sms:021440260" "Book Via SMS"
             , heroButton "mailto:lessons@karoridrivingschool.co.nz" "Book Via Email"
@@ -236,7 +236,7 @@ aboutAvailability =
         , div [ css [ Tw.my_4, Tw.mr_3 ] ]
             [ div [ css [ Tw.w_full ] ]
                 [ p [ pStd ]
-                    [ text "Lessons are $75 per hour on weekdays, and $80 per hour on weekends. My general operating hours are as follows:" ]
+                    [ text "Lessons are $80 per hour for adults, and $75 per hour for students. My general operating hours are as follows:" ]
                 , Html.Styled.table
                     [ css [ Tw.w_full ], pStd ]
                     [ tr []
