@@ -253,7 +253,7 @@ aboutAvailability =
                         ]
                     , tr []
                         [ td [] [ text "Thursday" ]
-                        , td [] [ text "7am — 6:30pm" ]
+                        , td [] [ text "8am — 6:30pm" ]
                         ]
                     , tr []
                         [ td [] [ text "Friday" ]
@@ -269,7 +269,6 @@ aboutAvailability =
                         ]
                     ]
                 ]
-            , p [ pStd ] [ text "Don't see a time that works for you? Don't stress! Send me a text or an email and we may be able to work out an alternative time." ]
             ]
         ]
 
