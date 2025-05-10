@@ -1,17 +1,209 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Driving School with competent instructor, Karori, Wellington Based.">
-  <title>Karori Driving School</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-</head>
-<body style="margin: 0;">
-  <div id="app"></div>
-  <script src="/elm.min.js"></script>
-  <script>
-    var app = Elm.Main.init({ node: document.getElementById('app') })
-  </script>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Driving School with competent instructor, Karori, Wellington Based."
+    />
+    <title>Karori Driving School</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <header class="hero-section blended-style">
+        <div class="hero-content background-gradient">
+          <img
+            src="/static/logo.svg"
+            class="hero-logo"
+            alt="Karori Driving School"
+          />
+        </div>
+      </header>
+
+      <section class="info-section text-center">
+        <h2 class="info-heading">One Hour Lessons</h2>
+        <h2 class="info-heading">$85 for adults and $80 students.</h2>
+        <div class="cta-buttons">
+          <a href="sms:021440260" class="button button-sms"> Book Via SMS </a>
+          <a
+            href="mailto:lessons@karoridrivingschool.co.nz"
+            class="button button-email"
+          >
+            Book Via Email
+          </a>
+        </div>
+      </section>
+
+      <div class="content-area">
+        <section id="about" class="section-block">
+          <h1 class="section-title">Your Driving Instructor</h1>
+          <div class="instructor-info">
+            <img
+              src="/static/marcel.webp"
+              class="instructor-img"
+              alt="Marcel, your driving instructor, standing beside the Karori Driving School vehicle."
+            />
+            <div class="instructor-text">
+              <p>
+                Hi, my name is Marcel. I'm a calm, friendly, and qualified
+                instructor that coaches driving in a positive way. I aim to make
+                each lesson a fun and enjoyable hour. My driving experience
+                stretches back more than 30 years, and I have been instructing
+                since 2020. My students have a very high pass rate so you can
+                trust me to prepare you with confidence for your test.
+              </p>
+              <p>
+                I’m a dad to two teenage daughters. Karori has been my home
+                since 2007. Prior to becoming an instructor, I was working in
+                the TV-news industry. I now enjoy running my own driving school
+                business full time. I lived in Switzerland for part of my life
+                and speak German/Swiss German as a second language.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr />
+
+        <section id="car" class="section-block">
+          <h1 class="section-title">The Car</h1>
+          <div class="car-info">
+            <img
+              src="/static/car.webp"
+              alt="A white Toyota Aqua with Karori Driving School signage parked on the side of a road."
+              class="car-img"
+            />
+            <div class="car-text">
+              <p>
+                The current vehicle is a 2016 automatic Toyota Aqua fitted with
+                dual controls, so I have a brake and an accelerator to take the
+                stress out of tricky situations. The Aqua is a great, little,
+                and safe car to start your driving experience in.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr />
+
+        <section id="lessons" class="section-block">
+          <h1 class="section-title">The Lessons</h1>
+          <div class="lessons-info">
+            <img
+              src="/static/student.webp"
+              alt="Me and a student in my car, mid-lesson, smiling."
+              class="lessons-img"
+            />
+            <div class="lessons-text">
+              <p>
+                Lessons are tailored to any skill level from the first time
+                behind the wheel to overseas license conversion lessons. Pick up
+                and drop off from your address or place of choice. Covering
+                suburbs including:
+              </p>
+              <ul>
+                <li>Karori</li>
+                <li>Wilton</li>
+                <li>Northland</li>
+                <li>Crofton Downs</li>
+                <li>Kelburn</li>
+                <li>Thorndon</li>
+                <li>Wellington Central</li>
+              </ul>
+              <p>
+                After each lesson, a feedback and progress chart is emailed to
+                you, which tracks your driving skills. Once you meet test level,
+                we'll practice on the Thorndon test route. Then, you are ready
+                to book your test!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr />
+
+        <section id="times" class="section-block">
+          <h1 class="section-title">Rates and Times</h1>
+          <div class="times-info">
+            <p>
+              Lessons are $85 per hour for adults, and $80 per hour for
+              students. My general operating hours are as follows:
+            </p>
+            <table>
+              <tr>
+                <td>Monday</td>
+                <td>Closed</td>
+              </tr>
+              <tr>
+                <td>Tuesday</td>
+                <td>8am — 6:30pm</td>
+              </tr>
+              <tr>
+                <td>Wednesday</td>
+                <td>8am — 6:30pm</td>
+              </tr>
+              <tr>
+                <td>Thursday</td>
+                <td>8am — 6:30pm</td>
+              </tr>
+              <tr>
+                <td>Friday</td>
+                <td>8am — 6:30pm</td>
+              </tr>
+              <tr>
+                <td>Saturday</td>
+                <td>8am — 5pm</td>
+              </tr>
+              <tr>
+                <td>Sunday</td>
+                <td>Closed</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <hr />
+
+        <section class="section-block">
+          <div class="review-slide review-section">
+            <h1 class="section-title text-center" id="review-title"></h1>
+            <p class="review-height" id="review-body"></p>
+          </div>
+          <div class="review-nav">
+            <button id="prev-review-btn" aria-label="Previous Review">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <button id="next-review-btn" aria-label="Next Review">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </section>
+
+        <hr />
+
+        <footer id="contact" class="contact-section">
+          <div class="contact-info">
+            <span>
+              <i class="fas fa-envelope-open"></i>
+              <a href="mailto:lessons@karoridrivingschool.co.nz"
+                >lessons@karoridrivingschool.co.nz</a
+              >
+            </span>
+            <span>
+              <i class="fas fa-phone"></i>
+              <a href="sms:021440260">021440260</a>
+            </span>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="/static/index.js"></script>
+  </body>
 </html>
