@@ -1,0 +1,511 @@
+/* --- Base Styles --- */
+body {
+    margin: 0;
+    line-height: 1.5;
+    font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji"; /* Equivalent to font-sans */
+    color: #1f2937; /* Default text color */
+}
+
+.blended-style {
+    background-image: url("/static/hero.webp");
+}
+
+.background-gradient {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0.6) 80%,
+        rgba(255, 255, 255, 0)
+    );
+}
+.lessons-info {
+    flex-direction: column;
+}
+
+.instructor-info {
+    flex-direction: column; /* Default flex direction */
+}
+
+/* Medium breakpoint (md) - typically 768px and up */
+@media (min-width: 768px) {
+    .md\:flex {
+        display: flex;
+    }
+
+    .md\:flex-col {
+        flex-direction: column;
+    }
+
+    .md\:flex-row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .md\:min-h-\[30\%\] {
+        min-height: 30%;
+    }
+
+    .md\:h-\[80vh\] {
+        height: 80vh;
+    }
+
+    .md\:max-w-\[1200px\] {
+        max-width: 1200px;
+    }
+
+    .md\:text-2xl {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
+    }
+
+    .md\:text-\[24px\] {
+        font-size: 24px;
+    }
+
+    .md\:hidden {
+        display: none;
+    }
+
+    .md\:mt-0 {
+        margin-top: 0;
+    }
+
+    .md\:w-3\/5 {
+        width: 60%; /* 3/5 of 100% */
+    }
+
+    .md\:w-\[500px\] {
+        width: 500px;
+    }
+
+    /* Custom classes responsive styles */
+    .text-m-md-l {
+        font-size: 1.5rem; /* Base for md, will be overridden below for .text-m-md-l on h1 */
+        line-height: 2rem;
+    }
+
+    /* Make all h1 and h2 elements larger on medium screens */
+    h1,
+    h2 {
+        font-size: 2.5rem; /* Example: Larger header size for md */
+        line-height: 1.2;
+    }
+
+    /* Specific size for the h1 with class text-m-md-l (used for headings like "The Car") */
+    h1.text-m-md-l {
+        font-size: 64px;
+    }
+
+    .text-s-md-m {
+        font-size: 1rem; /* Example: Medium text size at md */
+        line-height: 1.5rem;
+    }
+
+    /* Set paragraph text size on medium screens */
+    p {
+        font-size: 24px;
+        line-height: 1.5; /* Maintain line height */
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 800; /* font-extrabold */
+    color: #1f2937; /* text-gray-800 */
+    margin-top: 0; /* mt-0 where used */
+    margin-bottom: 0.5rem; /* Small default bottom margin */
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem; /* Default paragraph spacing */
+}
+
+ul {
+    list-style: disc; /* Default bullet points */
+    padding-left: 3rem; /* Default padding */
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+a {
+    color: #2563eb; /* Default link color (similar to bg-blue-600) */
+    text-decoration: none; /* no-underline */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* block where used */
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #e5e7eb; /* Equivalent to border-gray-200 or similar */
+    margin-top: 3rem; /* my-12 */
+    margin-bottom: 3rem; /* my-12 */
+    width: 100%; /* w-full */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%; /* w-full where used */
+    margin-bottom: 1rem; /* spacing below table */
+}
+
+td {
+    padding: 0.75rem; /* Adjusted padding for readability */
+    border: 1px solid #e5e7eb; /* Equivalent to border-gray-200 */
+}
+
+/* --- Layout --- */
+.page-container {
+    display: flex; /* md:flex */
+    flex-direction: column; /* md:flex-col */
+    width: 100%; /* w-full */
+    align-items: center; /* items-center */
+}
+
+.hero-section {
+    position: relative; /* relative */
+    height: 60vh; /* h-[60vh] */
+    width: 100%; /* w-full */
+    background-size: cover; /* bg-cover */
+    background-position: center; /* bg-center */
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+}
+
+.hero-content {
+    display: flex; /* flex */
+    justify-content: center; /* justify-center */
+    min-height: 30%; /* md:min-h-[30%] - base value, adjusted in media query */
+}
+
+.hero-logo {
+    padding: 2.5rem; /* pl-10, pr-10, pt-10 */
+    padding-bottom: 5rem; /* pb-20 */
+    max-width: 800px; /* max-w-[800px] */
+}
+
+.content-area {
+    width: 100%; /* Default width */
+    max-width: 1024px; /* lg:w-[1024px] */
+}
+
+.section-block {
+    margin-top: 1.75rem; /* mt-7 */
+    margin-left: 1.5rem; /* mx-6 */
+    margin-right: 1.5rem; /* mx-6 */
+    margin-bottom: 1.75rem; /* Add some bottom margin for consistency */
+}
+
+.info-section {
+    margin-top: 2rem; /* mt-8 */
+    margin-left: 0.5rem; /* mx-2 */
+    margin-right: 0.5rem; /* mx-2 */
+    margin-bottom: 2rem; /* Add bottom margin */
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+    align-items: center; /* items-center */
+    justify-content: center; /* justify-center */
+    text-align: center; /* text-center */
+    flex-grow: 1; /* flex-grow */
+    align-content: center; /* content-center */
+}
+
+.cta-buttons {
+    display: flex; /* flex */
+    align-content: center; /* content-center */
+    margin-top: 0.5rem; /* Spacing below headings */
+}
+
+.contact-section {
+    margin-bottom: 3rem; /* mb-12 */
+    display: flex; /* flex */
+    justify-content: center; /* justify-center */
+    width: 100%; /* w-full */
+}
+
+.contact-info {
+    display: flex; /* flex */
+    flex-direction: column; /* flex-col */
+    width: 90%; /* w-[90%] */
+    justify-content: space-between; /* justify-between */
+    font-weight: 700; /* font-bold */
+}
+
+.contact-info span {
+    margin-right: 0.5rem; /* mr-2 */
+}
+
+.contact-info span:last-child {
+    margin-top: 1rem; /* mt-4 */
+}
+
+/* --- Components --- */
+.info-heading {
+    font-size: 1.5rem; /* text-base */
+    line-height: 1.5rem;
+    padding-left: 2.5rem; /* pl-10 */
+    padding-right: 2.5rem; /* pr-10 */
+}
+
+.button {
+    display: inline-block; /* Make buttons behave like inline blocks */
+    margin-left: 0.75rem; /* mx-3 */
+    margin-right: 0.75rem; /* mx-3 */
+    margin-top: 0.5rem; /* mt-2 */
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #fff; /* text-white */
+    text-decoration: none; /* no-underline */
+    border-radius: 0.25rem; /* rounded */
+    border: none; /* border-none */
+    padding: 1rem 1.5rem; /* px-6 py-4 */
+    font-weight: 700; /* font-bold */
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+    font-size: 0.9rem; /* text-[0.9rem] */
+    cursor: pointer;
+}
+
+.button-sms {
+    /* Specific styles for SMS button if needed */
+}
+
+.button-email {
+    /* Specific styles for Email button if needed */
+}
+
+.section-title {
+    /* Base style for section titles (h1 with text-m-md-l) */
+    font-size: 2rem; /* text-m */
+    line-height: 1.75rem;
+    text-align: center; /* text-center */
+}
+
+.instructor-info,
+.car-info,
+.lessons-info,
+.times-info {
+    margin-top: 1rem; /* my-4 */
+    margin-bottom: 1rem; /* my-4 */
+    margin-right: 0.75rem; /* mr-3 */
+}
+
+.instructor-img {
+    width: 100%; /* w-full */
+    margin-left: auto; /* ml-auto */
+    margin-right: auto; /* mr-auto */
+    margin-bottom: 1rem; /* Add some space below image on small screens */
+}
+
+.car-img {
+    width: 100%; /* w-full */
+    margin-bottom: 1rem; /* Add some space below image on small screens */
+}
+
+.lessons-img {
+    width: 100%; /* w-full */
+    margin-left: auto; /* ml-auto */
+    margin-right: auto; /* mr-auto */
+    margin-bottom: 1rem; /* Add some space below image on small screens */
+}
+
+.instructor-text p,
+.car-text p,
+.lessons-text p,
+.times-info p,
+.review-section p {
+    font-size: 1rem; /* text-s-md-m base */
+    line-height: 2rem;
+    margin-right: 0.5rem; /* mr-2 */
+}
+
+.review-section {
+    margin-top: 1.75rem; /* mt-7 */
+    margin-left: 1.5rem; /* mx-6 */
+    margin-right: 1.5rem; /* mx-6 */
+    margin-bottom: 1rem; /* Add some space before buttons */
+}
+
+.review-section .section-title {
+    text-align: center; /* text-center */
+}
+
+.review-nav {
+    margin-left: 1.5rem; /* mx-6 */
+    margin-right: 1.5rem; /* mx-6 */
+    display: flex; /* flex */
+    justify-content: center; /* justify-center */
+    margin-bottom: 1.75rem; /* Add space below buttons */
+}
+
+.review-nav button {
+    padding: 0.25rem 0.75rem; /* px-3 py-1 */
+    width: 150px; /* w-[150px] */
+    border: 1px solid #e5e7eb; /* Example border */
+    background-color: #f9fafb; /* Example background */
+    cursor: pointer;
+}
+
+.review-nav button:hover {
+    background-color: #e5e7eb;
+}
+
+.review-nav button:first-child {
+    margin-right: 0.75rem; /* mr-3 */
+}
+
+/* --- Custom Classes (define your specific styles here) --- */
+.blended-style {
+    /* Define the styles for blended-style */
+    /* Example: mix-blend-mode: multiply; */
+    /* You'll need to add the actual styles here based on your design */
+}
+
+.background-gradient {
+    /* Define the styles for background-gradient */
+    /* Example: background: linear-gradient(to bottom, #ffffff, #f0f0f0); */
+    /* You'll need to add the actual styles here based on your design */
+    width: 100%; /* sm:w-full */
+}
+
+.review-height {
+    /* Define styles for review-height if needed */
+    height: 400px;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* --- Responsive Styles (md and lg breakpoints) --- */
+
+/* Medium breakpoint (md) - typically 768px and up */
+@media (min-width: 768px) {
+    .hero-section {
+        height: 80vh; /* md:h-[80vh] */
+        max-width: 1200px; /* md:max-w-[1200px] */
+    }
+
+    .hero-content {
+        min-height: 40%; /* md:min-h-[40%] - Adjusted based on the HTML change */
+    }
+
+    .info-heading {
+        font-size: 2rem; /* md:text-2xl (24px) */
+        line-height: 2rem;
+    }
+
+    .button-sms {
+        display: none; /* md:hidden */
+    }
+
+    .button-email {
+        font-size: 24px; /* md:text-[24px] */
+    }
+
+    .contact-info {
+        flex-direction: row; /* md:flex-row */
+        width: 60%; /* lg:w-3/5 - Base width for md+ before lg overrides */
+    }
+
+    .contact-info span:last-child {
+        margin-top: 0; /* md:mt-0 */
+    }
+
+    .instructor-info,
+    .car-info,
+    .lessons-info {
+        display: flex; /* md:flex */
+        align-items: center; /* Align items for multi-column layout */
+    }
+
+    .car-info {
+        flex-direction: row-reverse; /* md:flex-row-reverse */
+    }
+
+    .instructor-img {
+        width: 60%; /* md:w-3/5 */
+    }
+
+    .car-img {
+        width: 500px; /* md:w-[500px] */
+    }
+
+    .lessons-img {
+        width: 500px; /* md:w-3/5 */
+    }
+
+    .instructor-text,
+    .car-text,
+    .lessons-text {
+        flex-grow: 1; /* Allow text content to take up remaining space */
+    }
+
+    /* Responsive sizes for headers and paragraphs */
+    h1,
+    h2 {
+        font-size: 2.5rem; /* Base larger header size for md */
+        line-height: 1.2;
+    }
+
+    .section-title {
+        font-size: 64px; /* As requested for "The Car" and other h1 titles */
+        line-height: 1.2;
+    }
+
+    p,
+    ul {
+        font-size: 24px; /* As requested for paragraph text */
+        line-height: 1.5;
+    }
+
+    .instructor-text p,
+    .car-text p,
+    .lessons-text p,
+    .times-info p,
+    .review-section p {
+        font-size: 24px; /* Ensure specific paragraphs get the larger size */
+    }
+
+    .text-s-md-m {
+        font-size: 1rem; /* Example: Medium text size at md (can be overridden by 'p' rule above) */
+        line-height: 1.5rem;
+    }
+}
+
+/* Large breakpoint (lg) - typically 1024px and up */
+@media (min-width: 1024px) {
+    .content-area {
+        width: 1024px; /* lg:w-[1024px] */
+    }
+
+    .contact-info {
+        width: 60%; /* lg:w-3/5 */
+    }
+}
