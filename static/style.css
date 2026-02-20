@@ -20,8 +20,69 @@ body {
     color: #1f2937; /* Default text color */
 }
 
+/* .blended-style { */
+/*     background-image: url("/static/Main Photo Poss 3.jpg"); */
+/*     /\* Optional: If the image is too bright behind the logo, add a background-color and blend mode: *\/ */
+/*     /\* background-color: rgba(255, 255, 255, 0.2); *\/ */
+/*     /\* background-blend-mode: overlay; *\/ */
+/* } */
+
 .blended-style {
-    background-image: url("/static/hero.webp");
+    background-image: url("/static/1000040241_centred.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover; /* Default for large screens */
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* MOBILE HERO FIX: Show the whole image without side-cropping */
+@media (max-width: 767px) {
+    .hero-section {
+        /* This matches the 1024x478 aspect ratio of your photo */
+        height: auto;
+        aspect-ratio: 1024 / 478;
+    }
+    .hero-logo {
+        padding: 1rem !important; /* Smaller logo padding on mobile */
+    }
+}
+
+.instructor-img {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem; /* Rounds the corners nicely */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); /* Soft shadow to pop off the page */
+}
+
+.nzide-img {
+    width: 64px;
+    height: 64px;
+    margin-right: 1rem;
+    box-shadow: none; /* No shadow on logo */
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.multi-img-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.multi-img {
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    object-fit: cover;
 }
 
 .background-gradient {
@@ -37,6 +98,10 @@ body {
 
 .instructor-info {
     flex-direction: column; /* Default flex direction */
+}
+
+.car-info {
+    flex-direction: column;
 }
 
 /* Medium breakpoint (md) - typically 768px and up */
@@ -118,6 +183,39 @@ body {
         font-size: 24px;
         line-height: 1.5; /* Maintain line height */
     }
+
+    .instructor-info,
+    .car-info,
+    .lessons-info,
+    .nzide-info {
+        display: flex;
+        align-items: flex-start; /* Aligns text and images nicely at the top */
+        gap: 2.5rem; /* Adds breathing room between text and images */
+    }
+
+    .instructor-img {
+        width: 45%; /* Balances single image width with text */
+        margin-bottom: 0;
+    }
+
+    .nzide-img {
+        margin-bottom: 0;
+    }
+
+    .multi-img-container {
+        margin-bottom: 0;
+        flex-shrink: 0; /* Prevents the images from getting squished */
+        flex-direction: row;
+        min-height: 300px;
+    }
+
+    .instructor-text,
+    .car-text,
+    .lessons-text,
+    .nzide-text {
+        flex-grow: 1;
+        /* width: 55%; */
+    }
 }
 
 h1,
@@ -191,16 +289,6 @@ td {
     align-items: center; /* items-center */
 }
 
-.hero-section {
-    position: relative; /* relative */
-    height: 60vh; /* h-[60vh] */
-    width: 100%; /* w-full */
-    background-size: cover; /* bg-cover */
-    background-position: center; /* bg-center */
-    display: flex; /* flex */
-    flex-direction: column; /* flex-col */
-}
-
 .hero-content {
     display: flex; /* flex */
     justify-content: center; /* justify-center */
@@ -211,6 +299,7 @@ td {
     padding: 2.5rem; /* pl-10, pr-10, pt-10 */
     padding-bottom: 5rem; /* pb-20 */
     max-width: 800px; /* max-w-[800px] */
+    height: 40%;
 }
 
 .content-area {
@@ -248,20 +337,32 @@ td {
 .contact-section {
     margin-bottom: 3rem; /* mb-12 */
     display: flex; /* flex */
+    flex-direction: column;
     justify-content: center; /* justify-center */
     width: 100%; /* w-full */
 }
-
+.nzide-blurb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.nzide-blurb > p {
+    font-size: 16px;
+}
 .contact-info {
     display: flex; /* flex */
-    flex-direction: column; /* flex-col */
-    width: 90%; /* w-[90%] */
+    flex-direction: column;
+    width: 100%;
     justify-content: space-between; /* justify-between */
     font-weight: 700; /* font-bold */
+    align-content: center;
+    text-align: center;
 }
 
 .contact-info span {
     margin-right: 0.5rem; /* mr-2 */
+    line-height: 2rem;
+    flex-grow: 1;
 }
 
 .contact-info span:last-child {
@@ -274,6 +375,7 @@ td {
     line-height: 1.5rem;
     padding-left: 2.5rem; /* pl-10 */
     padding-right: 2.5rem; /* pr-10 */
+    margin-bottom: 1rem;
 }
 
 .button {
@@ -308,6 +410,7 @@ td {
     font-size: 2rem; /* text-m */
     line-height: 1.75rem;
     text-align: center; /* text-center */
+    padding-bottom: 1rem;
 }
 
 .instructor-info,
@@ -409,7 +512,6 @@ td {
 @media (min-width: 768px) {
     .hero-section {
         height: 80vh; /* md:h-[80vh] */
-        max-width: 1200px; /* md:max-w-[1200px] */
     }
 
     .hero-content {
@@ -431,7 +533,6 @@ td {
 
     .contact-info {
         flex-direction: row; /* md:flex-row */
-        width: 60%; /* lg:w-3/5 - Base width for md+ before lg overrides */
     }
 
     .contact-info span:last-child {
@@ -445,9 +546,6 @@ td {
         align-items: center; /* Align items for multi-column layout */
     }
 
-    .car-info {
-        flex-direction: row-reverse; /* md:flex-row-reverse */
-    }
 
     .instructor-img {
         width: 60%; /* md:w-3/5 */
@@ -505,7 +603,4 @@ td {
         width: 1024px; /* lg:w-[1024px] */
     }
 
-    .contact-info {
-        width: 60%; /* lg:w-3/5 */
-    }
 }
