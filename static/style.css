@@ -2,36 +2,15 @@
 body {
     margin: 0;
     line-height: 1.5;
-    font-family:
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        Arial,
-        "Noto Sans",
-        sans-serif,
-        "Apple Color Emoji",
-        "Segoe UI Emoji",
-        "Segoe UI Symbol",
-        "Noto Color Emoji"; /* Equivalent to font-sans */
-    color: #1f2937; /* Default text color */
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif, "Apple Color Emoji";
+    color: #1f2937;
 }
 
-/* .blended-style { */
-/*     background-image: url("/static/Main Photo Poss 3.jpg"); */
-/*     /\* Optional: If the image is too bright behind the logo, add a background-color and blend mode: *\/ */
-/*     /\* background-color: rgba(255, 255, 255, 0.2); *\/ */
-/*     /\* background-blend-mode: overlay; *\/ */
-/* } */
-
 .blended-style {
-    background-image: url("/static/1000040241_centred.jpg");
+    background-image: url("/static/hero.webp");
     background-position: bottom;
     background-repeat: no-repeat;
-    background-size: cover; /* Default for large screens */
+    background-size: cover;
 }
 
 .hero-section {
@@ -41,33 +20,26 @@ body {
     flex-direction: column;
 }
 
-/* MOBILE HERO FIX: Show the whole image without side-cropping */
 @media (max-width: 767px) {
     .hero-section {
-        /* This matches the 1024x478 aspect ratio of your photo */
         height: auto;
         aspect-ratio: 1024 / 478;
     }
     .hero-logo {
-        padding: 1rem !important; /* Smaller logo padding on mobile */
+        padding: 1rem !important;
     }
 }
 
-.instructor-img {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem; /* Rounds the corners nicely */
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); /* Soft shadow to pop off the page */
+.instructor-img, .multi-img {
+    margin: 0 auto 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 .nzide-img {
     width: 64px;
     height: 64px;
     margin-right: 1rem;
-    box-shadow: none; /* No shadow on logo */
-    border-radius: 0;
-    margin-bottom: 0;
 }
 
 .multi-img-container {
@@ -80,8 +52,6 @@ body {
 
 .multi-img {
     width: 100%;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     object-fit: cover;
 }
 
@@ -91,155 +61,27 @@ body {
         rgba(255, 255, 255, 0.6) 80%,
         rgba(255, 255, 255, 0)
     );
+    width: 100%;
 }
-.lessons-info {
+
+.instructor-info, .car-info, .lessons-info {
     flex-direction: column;
 }
 
-.instructor-info {
-    flex-direction: column; /* Default flex direction */
-}
-
-.car-info {
-    flex-direction: column;
-}
-
-/* Medium breakpoint (md) - typically 768px and up */
-@media (min-width: 768px) {
-    .md\:flex {
-        display: flex;
-    }
-
-    .md\:flex-col {
-        flex-direction: column;
-    }
-
-    .md\:flex-row-reverse {
-        flex-direction: row-reverse;
-    }
-
-    .md\:min-h-\[30\%\] {
-        min-height: 30%;
-    }
-
-    .md\:h-\[80vh\] {
-        height: 80vh;
-    }
-
-    .md\:max-w-\[1200px\] {
-        max-width: 1200px;
-    }
-
-    .md\:text-2xl {
-        font-size: 1.5rem; /* 24px */
-        line-height: 2rem; /* 32px */
-    }
-
-    .md\:text-\[24px\] {
-        font-size: 24px;
-    }
-
-    .md\:hidden {
-        display: none;
-    }
-
-    .md\:mt-0 {
-        margin-top: 0;
-    }
-
-    .md\:w-3\/5 {
-        width: 60%; /* 3/5 of 100% */
-    }
-
-    .md\:w-\[500px\] {
-        width: 500px;
-    }
-
-    /* Custom classes responsive styles */
-    .text-m-md-l {
-        font-size: 1.5rem; /* Base for md, will be overridden below for .text-m-md-l on h1 */
-        line-height: 2rem;
-    }
-
-    /* Make all h1 and h2 elements larger on medium screens */
-    h1,
-    h2 {
-        font-size: 2.5rem; /* Example: Larger header size for md */
-        line-height: 1.2;
-    }
-
-    /* Specific size for the h1 with class text-m-md-l (used for headings like "The Car") */
-    h1.text-m-md-l {
-        font-size: 64px;
-    }
-
-    .text-s-md-m {
-        font-size: 1rem; /* Example: Medium text size at md */
-        line-height: 1.5rem;
-    }
-
-    /* Set paragraph text size on medium screens */
-    p {
-        font-size: 24px;
-        line-height: 1.5; /* Maintain line height */
-    }
-
-    .instructor-info,
-    .car-info,
-    .lessons-info,
-    .nzide-info {
-        display: flex;
-        align-items: flex-start; /* Aligns text and images nicely at the top */
-        gap: 2.5rem; /* Adds breathing room between text and images */
-    }
-
-    .instructor-img {
-        width: 45%; /* Balances single image width with text */
-        margin-bottom: 0;
-    }
-
-    .nzide-img {
-        margin-bottom: 0;
-    }
-
-    .multi-img-container {
-        margin-bottom: 0;
-        flex-shrink: 0; /* Prevents the images from getting squished */
-        flex-direction: row;
-        min-height: 300px;
-    }
-
-    .instructor-text,
-    .car-text,
-    .lessons-text,
-    .nzide-text {
-        flex-grow: 1;
-        /* width: 55%; */
-    }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 800; /* font-extrabold */
-    color: #1f2937; /* text-gray-800 */
-    margin-top: 0; /* mt-0 where used */
-    margin-bottom: 0.5rem; /* Small default bottom margin */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+    color: #1f2937;
+    margin: 0 0 0.5rem;
 }
 
 p {
-    margin-top: 0;
-    margin-bottom: 1rem; /* Default paragraph spacing */
+    margin: 0 0 1rem;
 }
 
 ul {
-    list-style: disc; /* Default bullet points */
-    padding-left: 3rem; /* Default padding */
-    margin-top: 0;
-    margin-bottom: 1rem;
+    list-style: disc;
+    padding-left: 3rem;
+    margin: 0 0 1rem;
 }
 
 li {
@@ -247,8 +89,8 @@ li {
 }
 
 a {
-    color: #2563eb; /* Default link color (similar to bg-blue-600) */
-    text-decoration: none; /* no-underline */
+    color: #2563eb;
+    text-decoration: none;
 }
 
 a:hover {
@@ -258,349 +100,198 @@ a:hover {
 img {
     max-width: 100%;
     height: auto;
-    display: block; /* block where used */
+    display: block;
 }
 
 hr {
     border: 0;
     height: 1px;
-    background: #e5e7eb; /* Equivalent to border-gray-200 or similar */
-    margin-top: 3rem; /* my-12 */
-    margin-bottom: 3rem; /* my-12 */
-    width: 100%; /* w-full */
+    background: #e5e7eb;
+    margin: 3rem 0;
+    width: 100%;
 }
 
 table {
     border-collapse: collapse;
-    width: 100%; /* w-full where used */
-    margin-bottom: 1rem; /* spacing below table */
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 td {
-    padding: 0.75rem; /* Adjusted padding for readability */
-    border: 1px solid #e5e7eb; /* Equivalent to border-gray-200 */
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
 }
 
-/* --- Layout --- */
 .page-container {
-    display: flex; /* md:flex */
-    flex-direction: column; /* md:flex-col */
-    width: 100%; /* w-full */
-    align-items: center; /* items-center */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .hero-content {
-    display: flex; /* flex */
-    justify-content: center; /* justify-center */
-    min-height: 30%; /* md:min-h-[30%] - base value, adjusted in media query */
+    display: flex;
+    justify-content: center;
+    min-height: 30%;
 }
 
 .hero-logo {
-    padding: 2.5rem; /* pl-10, pr-10, pt-10 */
-    padding-bottom: 5rem; /* pb-20 */
-    max-width: 800px; /* max-w-[800px] */
+    padding: 2.5rem 2.5rem 5rem;
+    max-width: 800px;
     height: 40%;
 }
 
 .content-area {
-    width: 100%; /* Default width */
-    max-width: 1024px; /* lg:w-[1024px] */
+    width: 100%;
+    max-width: 1024px;
 }
 
 .section-block {
-    margin-top: 1.75rem; /* mt-7 */
-    margin-left: 1.5rem; /* mx-6 */
-    margin-right: 1.5rem; /* mx-6 */
-    margin-bottom: 1.75rem; /* Add some bottom margin for consistency */
+    margin: 1.75rem 1.5rem;
 }
 
 .info-section {
-    margin-top: 2rem; /* mt-8 */
-    margin-left: 0.5rem; /* mx-2 */
-    margin-right: 0.5rem; /* mx-2 */
-    margin-bottom: 2rem; /* Add bottom margin */
-    display: flex; /* flex */
-    flex-direction: column; /* flex-col */
-    align-items: center; /* items-center */
-    justify-content: center; /* justify-center */
-    text-align: center; /* text-center */
-    flex-grow: 1; /* flex-grow */
-    align-content: center; /* content-center */
-}
-
-.cta-buttons {
-    display: flex; /* flex */
-    align-content: center; /* content-center */
-    margin-top: 0.5rem; /* Spacing below headings */
-}
-
-.contact-section {
-    margin-bottom: 3rem; /* mb-12 */
-    display: flex; /* flex */
-    flex-direction: column;
-    justify-content: center; /* justify-center */
-    width: 100%; /* w-full */
-}
-.nzide-blurb {
+    margin: 2rem 0.5rem;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.nzide-blurb > p {
-    font-size: 16px;
-}
-.contact-info {
-    display: flex; /* flex */
     flex-direction: column;
-    width: 100%;
-    justify-content: space-between; /* justify-between */
-    font-weight: 700; /* font-bold */
-    align-content: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
+.cta-buttons {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.contact-section {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nzide-blurb {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-weight: 700;
+    text-align: center;
+
+}
+
 .contact-info span {
-    margin-right: 0.5rem; /* mr-2 */
+    margin-right: 0.5rem;
     line-height: 2rem;
-    flex-grow: 1;
 }
 
 .contact-info span:last-child {
-    margin-top: 1rem; /* mt-4 */
+    margin-top: 1rem;
 }
 
-/* --- Components --- */
 .info-heading {
-    font-size: 1.5rem; /* text-base */
+    font-size: 1.5rem;
     line-height: 1.5rem;
-    padding-left: 2.5rem; /* pl-10 */
-    padding-right: 2.5rem; /* pr-10 */
+    padding: 0 2.5rem;
     margin-bottom: 1rem;
 }
 
 .button {
-    display: inline-block; /* Make buttons behave like inline blocks */
-    margin-left: 0.75rem; /* mx-3 */
-    margin-right: 0.75rem; /* mx-3 */
-    margin-top: 0.5rem; /* mt-2 */
-    background-color: #2563eb; /* bg-blue-600 */
-    color: #fff; /* text-white */
-    text-decoration: none; /* no-underline */
-    border-radius: 0.25rem; /* rounded */
-    border: none; /* border-none */
-    padding: 1rem 1.5rem; /* px-6 py-4 */
-    font-weight: 700; /* font-bold */
-    box-shadow:
-        0 4px 6px -1px rgb(0 0 0 / 0.1),
-        0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
-    font-size: 0.9rem; /* text-[0.9rem] */
+    display: inline-block;
+    margin: 0.5rem 0.75rem 0;
+    background-color: #2563eb;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    font-size: 0.9rem;
     cursor: pointer;
-}
-
-.button-sms {
-    /* Specific styles for SMS button if needed */
-}
-
-.button-email {
-    /* Specific styles for Email button if needed */
 }
 
 .section-title {
-    /* Base style for section titles (h1 with text-m-md-l) */
-    font-size: 2rem; /* text-m */
+    font-size: 2rem;
     line-height: 1.75rem;
-    text-align: center; /* text-center */
+    text-align: center;
     padding-bottom: 1rem;
 }
 
-.instructor-info,
-.car-info,
-.lessons-info,
-.times-info {
-    margin-top: 1rem; /* my-4 */
-    margin-bottom: 1rem; /* my-4 */
-    margin-right: 0.75rem; /* mr-3 */
+.instructor-info, .car-info, .lessons-info, .times-info {
+    margin: 1rem 0.75rem 1rem 0;
 }
 
-.instructor-img {
-    width: 100%; /* w-full */
-    margin-left: auto; /* ml-auto */
-    margin-right: auto; /* mr-auto */
-    margin-bottom: 1rem; /* Add some space below image on small screens */
-}
-
-.car-img {
-    width: 100%; /* w-full */
-    margin-bottom: 1rem; /* Add some space below image on small screens */
-}
-
-.lessons-img {
-    width: 100%; /* w-full */
-    margin-left: auto; /* ml-auto */
-    margin-right: auto; /* mr-auto */
-    margin-bottom: 1rem; /* Add some space below image on small screens */
-}
-
-.instructor-text p,
-.car-text p,
-.lessons-text p,
-.times-info p,
-.review-section p {
-    font-size: 1rem; /* text-s-md-m base */
+.instructor-text p, .car-text p, .lessons-text p, .times-info p, .review-section p {
+    font-size: 1rem;
     line-height: 2rem;
-    margin-right: 0.5rem; /* mr-2 */
+    margin-right: 0.5rem;
 }
 
 .review-section {
-    margin-top: 1.75rem; /* mt-7 */
-    margin-left: 1.5rem; /* mx-6 */
-    margin-right: 1.5rem; /* mx-6 */
-    margin-bottom: 1rem; /* Add some space before buttons */
-}
-
-.review-section .section-title {
-    text-align: center; /* text-center */
+    margin: 1.75rem 1.5rem 1rem;
+    text-align: center;
 }
 
 .review-nav {
-    margin-left: 1.5rem; /* mx-6 */
-    margin-right: 1.5rem; /* mx-6 */
-    display: flex; /* flex */
-    justify-content: center; /* justify-center */
-    margin-bottom: 1.75rem; /* Add space below buttons */
+    margin: 0 1.5rem 1.75rem;
+    display: flex;
+    justify-content: center;
 }
 
 .review-nav button {
-    padding: 0.25rem 0.75rem; /* px-3 py-1 */
-    width: 150px; /* w-[150px] */
-    border: 1px solid #e5e7eb; /* Example border */
-    background-color: #f9fafb; /* Example background */
+    padding: 0.25rem 0.75rem;
+    width: 150px;
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
     cursor: pointer;
 }
 
-.review-nav button:hover {
-    background-color: #e5e7eb;
-}
-
 .review-nav button:first-child {
-    margin-right: 0.75rem; /* mr-3 */
-}
-
-/* --- Custom Classes (define your specific styles here) --- */
-.blended-style {
-    /* Define the styles for blended-style */
-    /* Example: mix-blend-mode: multiply; */
-    /* You'll need to add the actual styles here based on your design */
-}
-
-.background-gradient {
-    /* Define the styles for background-gradient */
-    /* Example: background: linear-gradient(to bottom, #ffffff, #f0f0f0); */
-    /* You'll need to add the actual styles here based on your design */
-    width: 100%; /* sm:w-full */
+    margin-right: 0.75rem;
 }
 
 .review-height {
-    /* Define styles for review-height if needed */
     height: 400px;
-    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-y: auto;
 }
 
-/* --- Responsive Styles (md and lg breakpoints) --- */
-
-/* Medium breakpoint (md) - typically 768px and up */
+/* --- Desktop/Medium Breakpoint --- */
 @media (min-width: 768px) {
-    .hero-section {
-        height: 80vh; /* md:h-[80vh] */
-    }
-
-    .hero-content {
-        min-height: 40%; /* md:min-h-[40%] - Adjusted based on the HTML change */
-    }
-
-    .info-heading {
-        font-size: 2rem; /* md:text-2xl (24px) */
-        line-height: 2rem;
-    }
-
-    .button-sms {
-        display: none; /* md:hidden */
-    }
-
-    .button-email {
-        font-size: 24px; /* md:text-[24px] */
-    }
-
+    .hero-section { height: 80vh; }
+    .hero-content { min-height: 40%; }
+    .info-heading { font-size: 2rem; }
+    .button-sms { display: none; }
+    .button-email { font-size: 24px; }
     .contact-info {
-        flex-direction: row; /* md:flex-row */
+        flex-direction: row;
+        align-content: space-between;
+    }
+    .contact-info span {
+        flex-grow: 1;
+    }
+    .nzide-blurb p {
+        font-size: 1rem;
     }
 
-    .contact-info span:last-child {
-        margin-top: 0; /* md:mt-0 */
+    .contact-info span:last-child { margin-top: 0; }
+
+    .instructor-info, .car-info, .lessons-info, .nzide-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 2.5rem;
     }
 
-    .instructor-info,
-    .car-info,
-    .lessons-info {
-        display: flex; /* md:flex */
-        align-items: center; /* Align items for multi-column layout */
+    .instructor-img { width: 45%; margin-bottom: 0; }
+    .car-img, .lessons-img { width: 500px; }
+    .multi-img-container { flex-direction: row; min-height: 300px; margin-bottom: 0; }
+
+    h1, h2 { font-size: 2.5rem; }
+    .section-title { font-size: 64px; line-height: 1.2; }
+    p, ul, .instructor-text p, .car-text p, .lessons-text p, .times-info p, .review-section p {
+        font-size: 24px;
     }
-
-
-    .instructor-img {
-        width: 60%; /* md:w-3/5 */
-    }
-
-    .car-img {
-        width: 500px; /* md:w-[500px] */
-    }
-
-    .lessons-img {
-        width: 500px; /* md:w-3/5 */
-    }
-
-    .instructor-text,
-    .car-text,
-    .lessons-text {
-        flex-grow: 1; /* Allow text content to take up remaining space */
-    }
-
-    /* Responsive sizes for headers and paragraphs */
-    h1,
-    h2 {
-        font-size: 2.5rem; /* Base larger header size for md */
-        line-height: 1.2;
-    }
-
-    .section-title {
-        font-size: 64px; /* As requested for "The Car" and other h1 titles */
-        line-height: 1.2;
-    }
-
-    p,
-    ul {
-        font-size: 24px; /* As requested for paragraph text */
-        line-height: 1.5;
-    }
-
-    .instructor-text p,
-    .car-text p,
-    .lessons-text p,
-    .times-info p,
-    .review-section p {
-        font-size: 24px; /* Ensure specific paragraphs get the larger size */
-    }
-
-    .text-s-md-m {
-        font-size: 1rem; /* Example: Medium text size at md (can be overridden by 'p' rule above) */
-        line-height: 1.5rem;
-    }
-}
-
-/* Large breakpoint (lg) - typically 1024px and up */
-@media (min-width: 1024px) {
-    .content-area {
-        width: 1024px; /* lg:w-[1024px] */
-    }
-
 }
