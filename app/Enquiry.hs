@@ -1,4 +1,4 @@
-module Enquiry (Enquiry (..), PhoneNumber, unPhoneNumber, unAge, Suburb (..), Licence (..), Age, Experience (..), emailP, phoneNumberP, suburbP, licenceP, experienceP, ageP) where
+module Enquiry (Enquiry (..), PhoneNumber, unPhoneNumber, unAge, Licence (..), Age, Experience (..), emailP, phoneNumberP, licenceP, experienceP, ageP) where
 
 import Text.Email.Parser (EmailAddress)
 import Text.Email.Validate (validate)
@@ -13,9 +13,6 @@ newtype PhoneNumber = PhoneNumber Text
 
 unPhoneNumber :: PhoneNumber -> Text
 unPhoneNumber (PhoneNumber t) = t
-
-data Suburb = Karori | Northland | CBD
-    deriving (Show)
 
 data Licence = Learner | Restricted | Overseas
     deriving stock (Show)
@@ -34,7 +31,7 @@ data Enquiry = Enquiry
     { fullName :: Text
     , mobileNumber :: PhoneNumber
     , emailAddress :: EmailAddress
-    , suburb :: Suburb
+    , suburb :: Text
     , licence :: Licence
     , age :: Age
     , drivingExperience :: Experience
@@ -48,14 +45,6 @@ symbolic s val = string s $> val
 
 phoneNumberP :: Parser PhoneNumber
 phoneNumberP = PhoneNumber . toText <$> M.some (digitChar <|> char ' ' <|> char '+')
-
-suburbP :: Parser Suburb
-suburbP =
-    choice
-        [ symbolic "Karori" Karori
-        , symbolic "Northland" Northland
-        , symbolic "CBD" CBD
-        ]
 
 licenceP :: Parser Licence
 licenceP =

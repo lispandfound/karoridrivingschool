@@ -34,7 +34,7 @@ enquiryTemplate (Enquiry{..}) = do
                 row "Full Name" fullName
                 row "Mobile" (unPhoneNumber mobileNumber)
                 row "Email" ((decodeUtf8 . toByteString) emailAddress)
-                row "Suburb" (show suburb)
+                row "Suburb" suburb
                 row "Licence" (show licence)
                 row "Age" ((show . unAge) age)
                 row "Experience" (showDrivingExperience drivingExperience)

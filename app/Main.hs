@@ -21,7 +21,7 @@ enquiry bookingEmail queue =
             age' <- parseFormParam ageP "age"
             mobileNumber' <- parseFormParam phoneNumberP "mobileNumber"
             emailAddress' <- parseFormParam emailP "emailAddress"
-            suburb' <- parseFormParam suburbP "suburb"
+            suburb' <- formParam "suburb"
             licence' <- parseFormParam licenceP "licence"
             experience' <- parseFormParam experienceP "experience"
             info' <- formParam "info"
