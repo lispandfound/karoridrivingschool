@@ -13,8 +13,8 @@ type MParser = Parsec Void Text
 parseFormParam :: MParser a -> LText -> ActionM a
 parseFormParam p path = formParam path >>= either (\e -> throw (FailedToParseParameter (toStrict path) "" (toText $ errorBundlePretty e))) pure . parse p (toString path) . toStrict
 
-inquiry :: EmailAddress -> FilePath -> ScottyM ()
-inquiry bookingEmail queue =
+enquiry :: EmailAddress -> FilePath -> ScottyM ()
+enquiry bookingEmail queue =
     S.post "/enquire/" $
         do
             name' <- formParam "fullName"
@@ -25,7 +25,7 @@ inquiry bookingEmail queue =
             licence' <- parseFormParam licenceP "licence"
             experience' <- parseFormParam experienceP "experience"
             info' <- formParam "info"
-            let inquiry' =
+            let enquiry' =
                     Enquiry
                         { fullName = name'
                         , mobileNumber = mobileNumber'
@@ -37,7 +37,7 @@ inquiry bookingEmail queue =
                         , info = info'
                         }
             uuid <- getEmailID
-            path <- writeEmail uuid bookingEmail inquiry'
+            path <- writeEmail uuid bookingEmail enquiry'
             sendEmail queue uuid path
             redirect "/"
 
@@ -80,8 +80,8 @@ defaults = Config{cfgPort = 3000, cfgBookingEmail = (fromJust . emailAddress) "l
 
 main :: IO ()
 main = do
-    let opts = info (configParser defaults <**> helper) (fullDesc <> progDesc "Start the Karori Driving School inquiry API")
+    let opts = info (configParser defaults <**> helper) (fullDesc <> progDesc "Start the Karori Driving School enquiry API")
     (Config{..}) <- execParser opts
 
     scotty cfgPort $ do
-        inquiry cfgBookingEmail cfgQueuePath
+        enquiry cfgBookingEmail cfgQueuePath

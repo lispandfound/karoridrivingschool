@@ -9,7 +9,7 @@ import Text.Email.Parser (EmailAddress, toByteString)
 
 -- | Main entry point to generate the HTML string
 renderEnquiryEmail :: Enquiry -> Text
-renderEnquiryEmail inquiry = (toStrict . renderText) (inquiryTemplate inquiry)
+renderEnquiryEmail enquiry = (toStrict . renderText) (enquiryTemplate enquiry)
 
 showDrivingExperience :: Experience -> Text
 showDrivingExperience None = "None"
@@ -19,8 +19,8 @@ showDrivingExperience More = "More than 30 hours"
 showDrivingExperience Returning = "Returning driver"
 
 -- | The HTML Template
-inquiryTemplate :: Enquiry -> Html ()
-inquiryTemplate (Enquiry{..}) = do
+enquiryTemplate :: Enquiry -> Html ()
+enquiryTemplate (Enquiry{..}) = do
     doctype_
     html_ [lang_ "en"] $ do
         head_ $ do
@@ -28,7 +28,7 @@ inquiryTemplate (Enquiry{..}) = do
             style_ "body { font-family: sans-serif; line-height: 1.5; color: #333; }"
         body_ [style_ "margin: 0; padding: 20px;"] $ do
             h2_ "New Driving Lesson Enquiry"
-            p_ "A new inquiry has been received with the following details:"
+            p_ "A new enquiry has been received with the following details:"
 
             table_ [style_ "width: 100%; border-collapse: collapse; max-width: 600px;"] $ do
                 row "Full Name" fullName
@@ -45,9 +45,9 @@ inquiryTemplate (Enquiry{..}) = do
                 toHtml info
 
 asEmail :: EmailAddress -> Enquiry -> Text
-asEmail to inquiry@(Enquiry{fullName = fullName}) =
+asEmail to enquiry@(Enquiry{fullName = fullName}) =
     fmt $
-        "To: " +| (decodeUtf8 . toByteString :: EmailAddress -> Text) to |+ "\nSubject: Driving lesson inquiry from " +| fullName |+ "\nMIME-Version: 1.0\nContent-Type: text/html; charset=UTF-8\n\n" +| renderEnquiryEmail inquiry |+ ""
+        "To: " +| (decodeUtf8 . toByteString :: EmailAddress -> Text) to |+ "\nSubject: Driving lesson enquiry from " +| fullName |+ "\nMIME-Version: 1.0\nContent-Type: text/html; charset=UTF-8\n\n" +| renderEnquiryEmail enquiry |+ ""
 
 -- | Helper for table rows to keep the DSL clean
 row :: Text -> Text -> Html ()
@@ -59,9 +59,9 @@ getEmailID :: (MonadIO m) => m UUID
 getEmailID = liftIO (randomIO :: IO UUID)
 
 writeEmail :: (MonadIO m) => UUID -> EmailAddress -> Enquiry -> m FilePath
-writeEmail uuid to inquiry = do
+writeEmail uuid to enquiry = do
     let path = "/tmp/email-" <> show uuid
-    writeFileText path (asEmail to inquiry)
+    writeFileText path (asEmail to enquiry)
     return path
 
 sendEmail :: (MonadIO m) => FilePath -> UUID -> FilePath -> m ()
