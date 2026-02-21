@@ -21,7 +21,7 @@ testQueue = "./jobs/"
 
 inquiry :: EmailAddress -> FilePath -> ScottyM ()
 inquiry bookingEmail queue =
-    S.post "/inquire/" $
+    S.post "/enquire/" $
         do
             name <- formParam "fullName"
             age <- parseFormParam ageP "age"
