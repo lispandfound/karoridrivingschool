@@ -1,5 +1,7 @@
 services:
   caddy:
+    profiles:
+      - test
     image: docker.io/caddy:latest
     ports:
       - "8080:80"
@@ -14,6 +16,8 @@ services:
 
   app:
     build: .
+    ports:
+      - "127.0.0.1:3000:3000" # Bind to localhost ONLY for security
     cap_add:
       - SYS_ADMIN # Required for filed's FUSE mount
     devices:
@@ -21,7 +25,7 @@ services:
     environment:
       - FILED_STATE_FILE=/db/filed.db # State configuration via env
     volumes:
-      - ./test-msmtprc:/etc/msmtprc:ro
+      - ./msmtprc:/etc/msmtprc:ro
 
   mailpit:
     image: docker.io/axllent/mailpit:latest
