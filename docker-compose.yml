@@ -15,7 +15,8 @@ services:
       - app
 
   app:
-    build: .
+    # build: .
+    image: ghcr.io/lispandfound/karoridrivingschool:latest
     ports:
       - "127.0.0.1:3000:3000" # Bind to localhost ONLY for security
     cap_add:
