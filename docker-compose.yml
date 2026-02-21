@@ -1,0 +1,32 @@
+services:
+  caddy:
+    image: docker.io/caddy:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./website:/srv
+      # IMPORTANT: Map your existing VPS certs here
+      # Replace '/var/lib/caddy/.local/share/caddy' with your actual VPS path
+      # - /var/lib/caddy/.local/share/caddy:/data
+    depends_on:
+      - app
+
+  app:
+    build: .
+    cap_add:
+      - SYS_ADMIN # Required for filed's FUSE mount
+    devices:
+      - /dev/fuse:/dev/fuse # Required for filed's FUSE mount
+    environment:
+      - FILED_STATE_FILE=/db/filed.db # State configuration via env
+    volumes:
+      - ./test-msmtprc:/etc/msmtprc:ro
+
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    profiles:
+      - test
+    ports:
+      - "8025:8025"
+      - "1025:1025"

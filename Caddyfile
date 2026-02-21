@@ -1,0 +1,16 @@
+http://* {
+    # Static files from the mounted ./website folder
+    root * /srv
+    file_server
+
+
+    # API routes
+    handle_path /api/* {
+        reverse_proxy app:3000
+    }
+
+    # Optional: Log to stdout for docker logs
+    log {
+        output stdout
+    }
+}

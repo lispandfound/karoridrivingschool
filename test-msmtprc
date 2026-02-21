@@ -1,0 +1,9 @@
+# test-msmtprc
+defaults
+port 1025
+tls off
+auth off
+
+account default
+host mailpit
+from test@local.dev
