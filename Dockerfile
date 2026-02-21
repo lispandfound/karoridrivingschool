@@ -32,7 +32,8 @@ COPY --from=builder /usr/local/bin/karoridrivingschool /usr/local/bin/
 
 EXPOSE 3000
 
-RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN groupadd -g 1001 appuser && \
+    useradd -r -u 1001 -g 1001 appuser
 RUN mkdir -p /jobs && chown -R appuser:appuser /jobs
 RUN mkdir -p /db && chown -R appuser:appuser /db && chmod 700 /db
 

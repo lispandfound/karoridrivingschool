@@ -24,9 +24,9 @@ services:
       - /dev/fuse:/dev/fuse # Required for filed's FUSE mount
     environment:
       - FILED_STATE_FILE=/db/filed.db # State configuration via env
-    volumes:
-      - ./msmtprc:/etc/msmtprc:ro
-
+    secrets:
+      - source: msmtp_config
+        target: /run/secrets/msmtp_config
   mailpit:
     image: docker.io/axllent/mailpit:latest
     profiles:
@@ -34,3 +34,6 @@ services:
     ports:
       - "8025:8025"
       - "1025:1025"
+secrets:
+  msmtp_config:
+    file: ./msmtprc
