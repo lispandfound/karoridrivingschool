@@ -276,6 +276,10 @@ td {
     .nzide-blurb p {
         font-size: 1rem;
     }
+    .multi-img-container .multi-img {
+        width: 50%;
+        flex: 1;
+    }
 
     .contact-info span:last-child { margin-top: 0; }
 
