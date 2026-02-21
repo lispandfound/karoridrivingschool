@@ -285,7 +285,7 @@ td {
         gap: 2.5rem;
     }
 
-    .instructor-img { width: 45%; margin-bottom: 0; }
+    .instructor-img { width: 68%; margin-bottom: 0; }
     .car-img, .lessons-img { width: 500px; }
     .multi-img-container { flex-direction: row; min-height: 300px; margin-bottom: 0; }
 
