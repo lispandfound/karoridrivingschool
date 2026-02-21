@@ -295,3 +295,55 @@ td {
         font-size: 24px;
     }
 }
+/* Form-specific styling to match the site's clean aesthetic */
+.form-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #f9fafb;
+    transition: border-color 0.2s;
+}
+.form-control:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: #fff;
+}
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+.form-help {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.submit-container {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+/* Re-using the button style but overriding for the form submit */
+.submit-btn {
+    border: none;
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 300px;
+}

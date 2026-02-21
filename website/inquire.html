@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Book a driving lesson with Karori Driving School."
+    />
+    <title>Book a Lesson - Karori Driving School</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page-container">
+
+      <div class="content-area">
+        <section class="section-block form-section">
+          <h1 class="section-title" style="font-size: 2.5rem;">Driving Lesson Enquiry</h1>
+          <p style="text-align: center; margin-bottom: 2rem;">
+            Please fill out the form below. I will get back to you shortly to confirm availability.
+          </p>
+
+          <form action="/api/inquire/" method="POST">
+
+            <h3 style="margin-bottom: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem;">Personal Details</h3>
+
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="mobileNumber">Mobile Number</label>
+              <input type="tel" id="mobileNumber" name="mobileNumber" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="emailAddress">Email Address</label>
+              <input type="email" id="emailAddress" name="emailAddress" class="form-control" required />
+            </div>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem;">Lesson Details</h3>
+
+            <div class="form-group">
+              <label class="form-label" for="suburb">Suburb you are based in</label>
+              <select id="suburb" name="suburb" class="form-control" required>
+                <option value="" disabled selected>Select your suburb...</option>
+                <option value="Karori">Karori</option>
+                <option value="Northland">Northland</option>
+                <option value="CBD">CBD</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="licence">Type of licence currently held</label>
+              <select id="licence" name="licence" class="form-control" required>
+                <option value="" disabled selected>Select licence type...</option>
+                <option value="Learner">Learner licence</option>
+                <option value="Restricted">Restricted licence</option>
+                <option value="Overseas">Overseas / International licence</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="age">Age of student</label>
+              <input type="number" id="age" name="age" class="form-control" min="15" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="experience">Approximate driving experience</label>
+              <select id="experience" name="experience" class="form-control" required>
+                <option value="" disabled selected>Select experience level...</option>
+                <option value="None">No experience</option>
+                <option value="LessThan10">Under 10 hours</option>
+                <option value="From10To30">10–30 hours</option>
+                <option value="More">30+ hours</option>
+                <option value="Returning">Returning driver</option>
+              </select>
+            </div>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem;">Additional Information</h3>
+
+            <div class="form-group">
+              <label class="form-label" for="info">Anything else you’d like me to know? <span style="font-weight:normal; color:#6b7280;">(Optional)</span></label>
+              <span class="form-help">Example: nervous driver, test coming up, availability preferences</span>
+              <textarea id="info" name="info" class="form-control"></textarea>
+            </div>
+
+            <div class="submit-container">
+              <button type="submit" class="button button-email submit-btn">
+                Send Enquiry
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+      </div>
+
+      <hr style="margin-top: 3rem;" />
+
+      <footer id="contact" class="contact-section">
+        <div class="contact-info">
+          <span>
+            <i class="fas fa-envelope-open"></i>
+            <a href="mailto:lessons@karoridrivingschool.co.nz">lessons@karoridrivingschool.co.nz</a>
+          </span>
+          <span>
+            <i class="fas fa-phone"></i>
+            <a href="sms:021440260">021440260</a>
+          </span>
+        </div>
+      </footer>
+
+    </div>
+  </body>
+</html>
