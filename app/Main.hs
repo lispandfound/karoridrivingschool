@@ -45,6 +45,7 @@ inquiry bookingEmail queue =
             uuid <- getEmailID
             path <- writeEmail uuid bookingEmail inquiry
             sendEmail queue uuid path
+            redirect "/"
 
 main :: IO ()
 main = scotty 3000 $ do
