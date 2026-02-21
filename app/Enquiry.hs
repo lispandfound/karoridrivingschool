@@ -1,4 +1,4 @@
-module Inquiry (Inquiry (..), PhoneNumber, unPhoneNumber, unAge, Suburb (..), Licence (..), Age, Experience (..), emailP, phoneNumberP, suburbP, licenceP, experienceP, ageP) where
+module Enquiry (Enquiry (..), PhoneNumber, unPhoneNumber, unAge, Suburb (..), Licence (..), Age, Experience (..), emailP, phoneNumberP, suburbP, licenceP, experienceP, ageP) where
 
 import Text.Email.Parser (EmailAddress)
 import Text.Email.Validate (validate)
@@ -30,7 +30,7 @@ emailP = M.some (satisfy (/= ' ')) >>= either fail pure . validate . encodeUtf8 
 
 data Experience = None | LessThan10 | From10To30 | More | Returning deriving (Show)
 
-data Inquiry = Inquiry
+data Enquiry = Enquiry
     { fullName :: Text
     , mobileNumber :: PhoneNumber
     , emailAddress :: EmailAddress

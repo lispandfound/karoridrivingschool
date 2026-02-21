@@ -2,7 +2,7 @@ module Main (main) where
 
 import Data.Maybe (fromJust)
 import Email
-import Inquiry
+import Enquiry
 import Text.Email.Validate
 import Text.Megaparsec
 import Text.Megaparsec.Error (errorBundlePretty)
@@ -32,7 +32,7 @@ inquiry bookingEmail queue =
             experience <- parseFormParam experienceP "experience"
             info <- formParam "info"
             let inquiry =
-                    Inquiry
+                    Enquiry
                         { fullName = name
                         , mobileNumber = mobileNumber
                         , age = age
