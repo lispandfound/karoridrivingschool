@@ -6,12 +6,6 @@ body {
     color: #1f2937;
 }
 
-.blended-style {
-    background-image: url("/static/hero.webp");
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 .hero-section {
     position: relative;
@@ -19,22 +13,37 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+.blended-style {
+        background-image: url("/static/hero.webp");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
 @media (max-width: 767px) {
     .hero-section {
         height: auto;
-        aspect-ratio: 1024 / 478;
+        aspect-ratio: 2000 / 978;
     }
     .hero-logo {
         padding: 1rem !important;
     }
+    .blended-style {
+        background-image: url("/static/hero_small.webp");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
 }
+
 
 .instructor-img, .multi-img {
     margin: 0 auto 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
+
+
 
 .nzide-img {
     width: 64px;
