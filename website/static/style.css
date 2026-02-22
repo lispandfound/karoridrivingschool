@@ -21,8 +21,7 @@ body {
 }
 @media (max-width: 767px) {
     .hero-section {
-        height: auto;
-        aspect-ratio: 2000 / 978;
+        height: 30vh;
     }
     .hero-logo {
         padding: 1rem !important;
