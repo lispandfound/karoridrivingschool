@@ -25,9 +25,17 @@ fieldLabel "fullName" = "Full Name"
 fieldLabel "suburb" = "Suburb"
 fieldLabel f = f
 
+fieldHint :: Text -> Text
+fieldHint "mobileNumber" = "Phone number should contain only digits, spaces, or a leading '+' (e.g. 021 123 4567)."
+fieldHint "emailAddress" = "Email address should be a valid address (e.g. name@example.com)."
+fieldHint "age" = "Age should be a whole number (e.g. 17)."
+fieldHint "licence" = "Licence type must be one of: Learner, Restricted, or Overseas."
+fieldHint "experience" = "Driving experience must be one of the provided options."
+fieldHint f = fieldLabel f <> " contains an invalid value."
+
 errorDesc :: ScottyException -> Text
-errorDesc (FailedToParseParameter field _ msg) = "Invalid " <> fieldLabel field <> ": " <> msg
-errorDesc (FormFieldNotFound field) = "Required field not provided: " <> fieldLabel field
+errorDesc (FailedToParseParameter field _ _) = "Invalid " <> fieldLabel field <> ": " <> fieldHint field <> " Please go back to fix the form."
+errorDesc (FormFieldNotFound field) = "Required field \"" <> fieldLabel field <> "\" was not submitted. Please go back to fix the form."
 errorDesc _ = "An unexpected error occurred. Please check your submission and try again."
 
 renderErrorPage :: Text -> Text
