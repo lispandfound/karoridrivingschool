@@ -31,6 +31,26 @@
             </div>
 
             <div class="form-group">
+              <label class="form-label" for="pronouns">Pronouns</label>
+              <select id="pronouns" name="pronouns" class="form-control" required>
+                <option value="" disabled selected>Select pronouns...</option>
+                <option value="HeHim">He/Him</option>
+                <option value="SheHer">She/Her</option>
+                <option value="OtherPronoun">Other</option>
+                <option value="PreferNotToSay">Prefer not to say</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="studentOrAdult">Are you a student or an adult?</label>
+              <select id="studentOrAdult" name="studentOrAdult" class="form-control" required>
+                <option value="" disabled selected>Select...</option>
+                <option value="Student">Student</option>
+                <option value="Adult">Adult</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <label class="form-label" for="age">Age of student</label>
               <input type="number" id="age" name="age" class="form-control" min="15" required />
             </div>

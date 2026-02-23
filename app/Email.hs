@@ -19,6 +19,16 @@ showDrivingExperience From10To30 = "Between 10 and 30 hours"
 showDrivingExperience More = "More than 30 hours"
 showDrivingExperience Returning = "Returning driver"
 
+showPronouns :: Pronouns -> Text
+showPronouns HeHim = "He/Him"
+showPronouns SheHer = "She/Her"
+showPronouns OtherPronoun = "Other"
+showPronouns PreferNotToSay = "Prefer not to say"
+
+showStudentOrAdult :: StudentOrAdult -> Text
+showStudentOrAdult Student = "Student"
+showStudentOrAdult Adult = "Adult"
+
 -- | The HTML Template
 enquiryTemplate :: Enquiry -> Html ()
 enquiryTemplate (Enquiry{..}) = do
@@ -39,6 +49,8 @@ enquiryTemplate (Enquiry{..}) = do
                 row "Licence" (show licence)
                 row "Age" ((show . unAge) age)
                 row "Experience" (showDrivingExperience drivingExperience)
+                row "Pronouns" (showPronouns pronouns)
+                row "Student or Adult" (showStudentOrAdult studentOrAdult)
 
             unless (T.null info) $ do
                 hr_ []
