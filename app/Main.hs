@@ -5,6 +5,7 @@ import Email
 import Enquiry
 import Lucid
 import Network.HTTP.Types (badRequest400)
+import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import Options.Applicative as O
 import Text.Email.Validate
 import Web.Scotty as S
@@ -95,4 +96,5 @@ main = do
     (Config{..}) <- execParser opts
 
     scotty cfgPort $ do
+        middleware logStdoutDev
         enquiry cfgBookingEmail cfgQueuePath

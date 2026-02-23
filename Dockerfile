@@ -45,6 +45,7 @@ RUN chmod +x /entrypoint.sh
 
 COPY ./config/fuse.conf /etc/fuse.conf
 
+RUN mkdir -p /logs && chown -R appuser:appuser /logs
 RUN mkdir -p /home/appuser
 RUN chown -R appuser:appuser /home/appuser
 

@@ -28,6 +28,8 @@ services:
     secrets:
       - source: msmtp_config
         target: /run/secrets/msmtp_config
+    volumes:
+      - logs:/logs
   mailpit:
     image: docker.io/axllent/mailpit:latest
     profiles:
@@ -38,3 +40,5 @@ services:
 secrets:
   msmtp_config:
     file: ./msmtprc
+volumes:
+  logs:
