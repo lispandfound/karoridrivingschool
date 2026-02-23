@@ -20,3 +20,4 @@ devenv.local.nix
 .pre-commit-config.yaml
 /dist-newstyle/
 /jobs/
+/dist/
