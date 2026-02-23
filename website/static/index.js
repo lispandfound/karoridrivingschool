@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/static/reviews.json")
+    fetch("/reviews.json")
         .then((response) => response.json())
         .then((reviews) => {
             console.log(reviews);
