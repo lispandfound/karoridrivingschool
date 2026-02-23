@@ -42,6 +42,13 @@ build: reset
       css_file.write_text(content)
       print(f"Updated references in: {css_file.name}")
 
+  for js_file in Path(dist_dir).rglob("*.js"):
+      content = js_file.read_text()
+      for original, hashed in manifest.items():
+          content = content.replace(original, hashed)
+      js_file.write_text(content)
+      print(f"Updated references in: {js_file.name}")
+
 
 deploy: build
     cd dist && rsync -r --delete . /var/www/karoridrivingschool.co.nz/
