@@ -1,5 +1,6 @@
 module Email (renderEnquiryEmail, sendEmail, getEmailID, writeEmail) where
 
+import Data.Text qualified as T
 import Data.UUID (UUID)
 import Enquiry
 import Fmt
@@ -39,10 +40,11 @@ enquiryTemplate (Enquiry{..}) = do
                 row "Age" ((show . unAge) age)
                 row "Experience" (showDrivingExperience drivingExperience)
 
-            hr_ []
-            h3_ "Additional Info"
-            div_ [style_ "background: #f9f9f9; padding: 15px; border-left: 4px solid #ccc;"] $
-                toHtml info
+            unless (T.null info) $ do
+                hr_ []
+                h3_ "Additional Info"
+                div_ [style_ "background: #f9f9f9; padding: 15px; border-left: 4px solid #ccc;"] $
+                    toHtml info
 
 asEmail :: EmailAddress -> Enquiry -> Text
 asEmail to enquiry@(Enquiry{fullName = fullName}) =

@@ -158,6 +158,18 @@ td {
     margin: 1.75rem 1.5rem;
 }
 
+.enquiry-block p {
+    text-align: center;
+}
+
+h1#enquiry {
+    font-size: 2.5rem;
+}
+
+p#enquiry-paragraph {
+    margin-bottom: 1rem;
+}
+
 .info-section {
     margin: 2rem 0.5rem;
     display: flex;

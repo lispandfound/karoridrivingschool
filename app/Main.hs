@@ -3,43 +3,54 @@ module Main (main) where
 import Data.Maybe (fromJust)
 import Email
 import Enquiry
+import Lucid
+import Network.HTTP.Types (badRequest400)
 import Options.Applicative as O
 import Text.Email.Validate
-import Text.Megaparsec
 import Web.Scotty as S
 
-type MParser = Parsec Void Text
+errorDesc :: ScottyException -> Text
+errorDesc (FailedToParseParameter field _ _) = "Invalid " <> fieldLabel field <> ": " <> fieldHint field <> " Please go back to fix the form."
+errorDesc (MalformedForm e) = e
+errorDesc _ = "An unexpected error occurred. Please check your submission and try again."
 
-parseFormParam :: MParser a -> LText -> ActionM a
-parseFormParam p path = formParam path >>= either (\e -> throw (FailedToParseParameter (toStrict path) "" (toText $ errorBundlePretty e))) pure . parse p (toString path) . toStrict
+renderErrorPage :: Text -> Text
+renderErrorPage = toStrict . renderText . errorPageHtml
+
+errorPageHtml :: Text -> Html ()
+errorPageHtml msg = do
+    doctype_
+    html_ [lang_ "en"] $ do
+        head_ $ do
+            meta_ [charset_ "UTF-8"]
+            meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
+            title_ "Form Error - Karori Driving School"
+            link_ [rel_ "icon", type_ "image/x-icon", href_ "/favicon.ico"]
+            link_ [rel_ "stylesheet", href_ "/static/style.css"]
+        body_ $
+            div_ [class_ "page-container"] $
+                div_ [class_ "content-area"] $
+                    section_ [class_ "section-block"] $ do
+                        h1_ "Submission Error"
+                        p_ (toHtml msg)
+                        a_ [href_ "javascript:history.back()"] "\x2190 Go Back"
+
+sendError :: ScottyException -> ActionM ()
+sendError = (status badRequest400 >>) . html . fromStrict . renderErrorPage . errorDesc
+
+processEnquiry :: EmailAddress -> FilePath -> ActionM ()
+processEnquiry bookingEmail queue = do
+    enquiry' <- formData
+    uuid <- getEmailID
+    path <- writeEmail uuid bookingEmail enquiry'
+    sendEmail queue uuid path
+    redirect "/success.html"
 
 enquiry :: EmailAddress -> FilePath -> ScottyM ()
 enquiry bookingEmail queue =
     S.post "/enquire/" $
-        do
-            name' <- formParam "fullName"
-            age' <- parseFormParam ageP "age"
-            mobileNumber' <- parseFormParam phoneNumberP "mobileNumber"
-            emailAddress' <- parseFormParam emailP "emailAddress"
-            suburb' <- formParam "suburb"
-            licence' <- parseFormParam licenceP "licence"
-            experience' <- parseFormParam experienceP "experience"
-            info' <- formParam "info"
-            let enquiry' =
-                    Enquiry
-                        { fullName = name'
-                        , mobileNumber = mobileNumber'
-                        , age = age'
-                        , emailAddress = emailAddress'
-                        , suburb = suburb'
-                        , licence = licence'
-                        , drivingExperience = experience'
-                        , info = info'
-                        }
-            uuid <- getEmailID
-            path <- writeEmail uuid bookingEmail enquiry'
-            sendEmail queue uuid path
-            redirect "/"
+        processEnquiry bookingEmail queue
+            `catch` sendError
 
 data Config = Config
     { cfgPort :: Int
