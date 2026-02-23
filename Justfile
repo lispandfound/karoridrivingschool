@@ -16,8 +16,8 @@ build: reset
 
   dist_dir = "{{dist}}"
   manifest = {}
-
-  for filepath in Path(dist_dir).rglob("*.webp"):
+  static_dir = Path(dist_dir) / 'static'
+  for filepath in static_dir.rglob("*"):
       content = filepath.read_bytes()
       file_hash = hashlib.md5(content).hexdigest()[:8]
 
@@ -34,6 +34,7 @@ build: reset
           content = content.replace(original, hashed)
       html_file.write_text(content)
       print(f"Updated references in: {html_file.name}")
+
   for css_file in Path(dist_dir).rglob("*.css"):
       content = css_file.read_text()
       for original, hashed in manifest.items():
