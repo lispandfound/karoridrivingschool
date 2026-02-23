@@ -377,3 +377,12 @@ textarea.form-control {
     width: 100%;
     max-width: 300px;
 }
+
+/* Pronouns "Other" free-form input - hidden by default, revealed via CSS :has() */
+.pronouns-other-field {
+    display: none;
+    margin-top: 0.5rem;
+}
+.pronouns-group:has(select option[value="OtherPronoun"]:checked) .pronouns-other-field {
+    display: block;
+}

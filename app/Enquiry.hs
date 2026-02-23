@@ -28,7 +28,7 @@ emailP = M.some (satisfy (/= ' ')) >>= either fail pure . validate . encodeUtf8 
 
 data Experience = None | LessThan10 | From10To30 | More | Returning deriving (Show)
 
-data Pronouns = HeHim | SheHer | OtherPronoun | PreferNotToSay deriving (Show)
+data Pronouns = HeHim | SheHer | OtherPronoun Text | PreferNotToSay deriving (Show)
 
 data StudentOrAdult = Student | Adult deriving (Show)
 
@@ -56,9 +56,16 @@ instance FromForm Enquiry where
             <*> parseP "licence" licenceP f
             <*> parseP "age" ageP f
             <*> parseP "experience" experienceP f
-            <*> parseP "pronouns" pronounsP f
+            <*> parsePronounsF f
             <*> parseP "studentOrAdult" studentOrAdultP f
             <*> (fmap (fromMaybe mempty) . lookupMaybe "info") f
+
+parsePronounsF :: Form -> Either Text Pronouns
+parsePronounsF f = do
+    val <- lookupOrMissing "pronouns" f
+    case val of
+        "OtherPronoun" -> OtherPronoun . fromMaybe "" <$> lookupMaybe "pronounsOther" f
+        _ -> first (const (fieldHint "pronouns")) $ parse pronounsP mempty val
 
 parseP :: Text -> Parser a -> Form -> Either Text a
 parseP l p = (>>= first (const (fieldHint l)) . parse p mempty) . lookupOrMissing l
@@ -124,7 +131,6 @@ pronounsP =
     choice
         [ symbolic "HeHim" HeHim
         , symbolic "SheHer" SheHer
-        , symbolic "OtherPronoun" OtherPronoun
         , symbolic "PreferNotToSay" PreferNotToSay
         ]
 

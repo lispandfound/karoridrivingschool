@@ -22,7 +22,7 @@ showDrivingExperience Returning = "Returning driver"
 showPronouns :: Pronouns -> Text
 showPronouns HeHim = "He/Him"
 showPronouns SheHer = "She/Her"
-showPronouns OtherPronoun = "Other"
+showPronouns (OtherPronoun t) = if T.null t then "Other" else t
 showPronouns PreferNotToSay = "Prefer not to say"
 
 showStudentOrAdult :: StudentOrAdult -> Text
