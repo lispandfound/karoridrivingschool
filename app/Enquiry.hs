@@ -1,4 +1,4 @@
-module Enquiry (Enquiry (..), PhoneNumber, unPhoneNumber, unAge, Licence (..), Age, Experience (..), emailP, phoneNumberP, licenceP, experienceP, ageP, fieldLabel, fieldHint) where
+module Enquiry (Enquiry (..), PhoneNumber, unPhoneNumber, unAge, Licence (..), Age, Experience (..), Pronouns (..), StudentOrAdult (..), emailP, phoneNumberP, licenceP, experienceP, ageP, pronounsP, studentOrAdultP, fieldLabel, fieldHint) where
 
 import Text.Email.Parser (EmailAddress)
 import Text.Email.Validate (validate)
@@ -28,6 +28,10 @@ emailP = M.some (satisfy (/= ' ')) >>= either fail pure . validate . encodeUtf8 
 
 data Experience = None | LessThan10 | From10To30 | More | Returning deriving (Show)
 
+data Pronouns = HeHim | SheHer | TheyThem | OtherPronoun Text | PreferNotToSay deriving (Show)
+
+data StudentOrAdult = Student | Adult deriving (Show)
+
 data Enquiry = Enquiry
     { fullName :: Text
     , mobileNumber :: PhoneNumber
@@ -36,6 +40,8 @@ data Enquiry = Enquiry
     , licence :: Licence
     , age :: Age
     , drivingExperience :: Experience
+    , pronouns :: Pronouns
+    , studentOrAdult :: StudentOrAdult
     , info :: Text
     }
     deriving (Show)
@@ -50,7 +56,16 @@ instance FromForm Enquiry where
             <*> parseP "licence" licenceP f
             <*> parseP "age" ageP f
             <*> parseP "experience" experienceP f
+            <*> parsePronounsF f
+            <*> parseP "studentOrAdult" studentOrAdultP f
             <*> (fmap (fromMaybe mempty) . lookupMaybe "info") f
+
+parsePronounsF :: Form -> Either Text Pronouns
+parsePronounsF f = do
+    val <- lookupOrMissing "pronouns" f
+    case val of
+        "OtherPronoun" -> OtherPronoun . fromMaybe "" <$> lookupMaybe "pronounsOther" f
+        _ -> parseP "pronouns" pronounsP f
 
 parseP :: Text -> Parser a -> Form -> Either Text a
 parseP l p = (>>= first (const (fieldHint l)) . parse p mempty) . lookupOrMissing l
@@ -69,6 +84,8 @@ fieldLabel "licence" = "Licence"
 fieldLabel "experience" = "Experience"
 fieldLabel "fullName" = "Full Name"
 fieldLabel "suburb" = "Suburb"
+fieldLabel "pronouns" = "Pronouns"
+fieldLabel "studentOrAdult" = "Student or Adult"
 fieldLabel f = f
 
 fieldHint :: Text -> Text
@@ -77,6 +94,8 @@ fieldHint "emailAddress" = "Email address should be a valid address (e.g. name@e
 fieldHint "age" = "Age should be a whole number (e.g. 17)."
 fieldHint "licence" = "Licence type must be one of: Learner, Restricted, or Overseas."
 fieldHint "experience" = "Driving experience must be one of the provided options."
+fieldHint "pronouns" = "Pronouns must be one of: He/Him, She/Her, They/Them, Other, or Prefer not to say."
+fieldHint "studentOrAdult" = "Please indicate whether you are a Student or an Adult."
 fieldHint f = fieldLabel f <> " contains an invalid value."
 
 -- | Helper to parse a string and return a specific constructor
@@ -106,3 +125,19 @@ experienceP =
 
 ageP :: Parser Age
 ageP = Age <$> decimal
+
+pronounsP :: Parser Pronouns
+pronounsP =
+    choice
+        [ symbolic "HeHim" HeHim
+        , symbolic "SheHer" SheHer
+        , symbolic "TheyThem" TheyThem
+        , symbolic "PreferNotToSay" PreferNotToSay
+        ]
+
+studentOrAdultP :: Parser StudentOrAdult
+studentOrAdultP =
+    choice
+        [ symbolic "Student" Student
+        , symbolic "Adult" Adult
+        ]
