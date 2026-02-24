@@ -44,7 +44,7 @@ processEnquiry bookingEmail queue = do
     enquiry' <- formData
     uuid <- getEmailID
     path <- writeEmail uuid bookingEmail enquiry'
-    putStrLn $ "Queueing email job " <> show uuid <> " for " <> toText path
+    putStrLn $ "Queueing email job " <> show uuid <> " for " <> path
     sendEmail queue uuid path
     redirect "/success.html"
 
