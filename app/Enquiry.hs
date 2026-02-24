@@ -28,7 +28,7 @@ emailP = M.some (satisfy (/= ' ')) >>= either fail pure . validate . encodeUtf8 
 
 data Experience = None | LessThan10 | From10To30 | More | Returning deriving (Show)
 
-data Pronouns = HeHim | SheHer | OtherPronoun Text | PreferNotToSay deriving (Show)
+data Pronouns = HeHim | SheHer | TheyThem | OtherPronoun Text | PreferNotToSay deriving (Show)
 
 data StudentOrAdult = Student | Adult deriving (Show)
 
@@ -65,7 +65,7 @@ parsePronounsF f = do
     val <- lookupOrMissing "pronouns" f
     case val of
         "OtherPronoun" -> OtherPronoun . fromMaybe "" <$> lookupMaybe "pronounsOther" f
-        _ -> first (const (fieldHint "pronouns")) $ parse pronounsP mempty val
+        _ -> parseP "pronouns" pronounsP f
 
 parseP :: Text -> Parser a -> Form -> Either Text a
 parseP l p = (>>= first (const (fieldHint l)) . parse p mempty) . lookupOrMissing l
@@ -94,7 +94,7 @@ fieldHint "emailAddress" = "Email address should be a valid address (e.g. name@e
 fieldHint "age" = "Age should be a whole number (e.g. 17)."
 fieldHint "licence" = "Licence type must be one of: Learner, Restricted, or Overseas."
 fieldHint "experience" = "Driving experience must be one of the provided options."
-fieldHint "pronouns" = "Pronouns must be one of: He/Him, She/Her, Other, or Prefer not to say."
+fieldHint "pronouns" = "Pronouns must be one of: He/Him, She/Her, They/Them, Other, or Prefer not to say."
 fieldHint "studentOrAdult" = "Please indicate whether you are a Student or an Adult."
 fieldHint f = fieldLabel f <> " contains an invalid value."
 
@@ -131,6 +131,7 @@ pronounsP =
     choice
         [ symbolic "HeHim" HeHim
         , symbolic "SheHer" SheHer
+        , symbolic "TheyThem" TheyThem
         , symbolic "PreferNotToSay" PreferNotToSay
         ]
 

@@ -22,6 +22,7 @@ showDrivingExperience Returning = "Returning driver"
 showPronouns :: Pronouns -> Text
 showPronouns HeHim = "He/Him"
 showPronouns SheHer = "She/Her"
+showPronouns TheyThem = "They/Them"
 showPronouns (OtherPronoun t) = if T.null t then "Other" else t
 showPronouns PreferNotToSay = "Prefer not to say"
 
