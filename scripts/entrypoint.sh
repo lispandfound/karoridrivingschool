@@ -1,7 +1,5 @@
 #!/bin/bash
 
-exec > >(tee -a /logs/app.log) 2>&1
-
 cp /run/secrets/msmtp_config /etc/msmtprc
 chmod 600 /etc/msmtprc
 chown appuser:appuser /etc/msmtprc
