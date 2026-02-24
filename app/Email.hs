@@ -67,7 +67,4 @@ writeEmail uuid to enquiry = do
     return path
 
 sendEmail :: (MonadIO m) => FilePath -> UUID -> FilePath -> m ()
-sendEmail queue uuid path = do
-    putStrLn $ "Sending email: queuing " <> toText path <> " as job " <> show uuid
-    let queuePath = queue <> "/pending/" <> show uuid
-    writeFileText queuePath ("/usr/bin/send-email.sh " <> toText path)
+sendEmail queue uuid path = let queuePath = queue <> "/pending/" <> show uuid in writeFileText queuePath ("/usr/bin/send-email.sh " <> toText path)
