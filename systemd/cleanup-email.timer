@@ -1,9 +1,0 @@
-[Unit]
-Description=Hourly cleanup of old email temp files
-
-[Timer]
-OnBootSec=1h
-OnUnitActiveSec=1h
-
-[Install]
-WantedBy=timers.target
