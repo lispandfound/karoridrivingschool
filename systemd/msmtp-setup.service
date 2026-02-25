@@ -1,0 +1,8 @@
+[Unit]
+Description=Setup msmtp configuration
+ConditionPathExists=/run/secrets/msmtp_config
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c "cp /run/secrets/msmtp_config /etc/msmtprc && chmod 600 /etc/msmtprc && chown appuser:appuser /etc/msmtprc"

@@ -1,0 +1,7 @@
+[Unit]
+Description=Delete email temp files older than one hour
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/find /tmp -name 'email-*' -mmin +60 -delete
+User=appuser

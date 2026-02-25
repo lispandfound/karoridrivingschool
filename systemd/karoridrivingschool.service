@@ -1,0 +1,13 @@
+[Unit]
+Description=Karori Driving School application
+After=filed.service msmtp-setup.service
+Requires=filed.service msmtp-setup.service
+
+[Service]
+Type=simple
+User=appuser
+ExecStart=/usr/local/bin/karoridrivingschool
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

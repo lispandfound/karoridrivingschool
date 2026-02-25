@@ -24,6 +24,8 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     libsqlite3-0 \
     libgmp10 \
+    systemd \
+    systemd-sysv \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=go-builder /usr/local/bin/filed /usr/local/bin/
@@ -40,13 +42,20 @@ RUN mkdir -p /db && chown -R appuser:appuser /db && chmod 700 /db
 COPY scripts/send-email.sh /usr/bin/send-email.sh
 RUN chmod +x /usr/bin/send-email.sh
 
-COPY scripts/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 COPY ./config/fuse.conf /etc/fuse.conf
 
 RUN mkdir -p /logs && chown -R appuser:appuser /logs
 RUN mkdir -p /home/appuser
 RUN chown -R appuser:appuser /home/appuser
 
-ENTRYPOINT ["/entrypoint.sh"]
+COPY systemd/cleanup-email.service /etc/systemd/system/cleanup-email.service
+COPY systemd/cleanup-email.timer /etc/systemd/system/cleanup-email.timer
+COPY systemd/msmtp-setup.service /etc/systemd/system/msmtp-setup.service
+COPY systemd/filed.service /etc/systemd/system/filed.service
+COPY systemd/karoridrivingschool.service /etc/systemd/system/karoridrivingschool.service
+
+RUN systemctl enable --root=/ cleanup-email.timer filed.service karoridrivingschool.service
+
+STOPSIGNAL SIGRTMIN+3
+
+ENTRYPOINT ["/lib/systemd/systemd"]
