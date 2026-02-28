@@ -40,6 +40,9 @@ RUN mkdir -p /db && chown -R appuser:appuser /db && chmod 700 /db
 COPY scripts/send-email.sh /usr/bin/send-email.sh
 RUN chmod +x /usr/bin/send-email.sh
 
+COPY scripts/cleanup-email.sh /usr/bin/cleanup-email.sh
+RUN chmod +x /usr/bin/cleanup-email.sh
+
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
