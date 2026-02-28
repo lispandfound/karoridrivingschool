@@ -1,0 +1,410 @@
+/* --- Base Styles --- */
+body {
+    margin: 0;
+    line-height: 1.5;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif, "Apple Color Emoji";
+    color: #1f2937;
+}
+
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.blended-style {
+        background-image: url("/static/hero.webp");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+@media (max-width: 767px) {
+    .hero-section {
+        height: 30vh;
+    }
+    .hero-logo {
+        padding: 1rem !important;
+    }
+    .blended-style {
+        background-image: url("/static/hero_small.webp");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+}
+
+
+.instructor-img, .multi-img {
+    margin: 0 auto 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+
+
+.nzide-img {
+    width: 64px;
+    height: 64px;
+    margin-right: 1rem;
+}
+
+.multi-img-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.multi-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.background-gradient {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0.6) 80%,
+        rgba(255, 255, 255, 0)
+    );
+    width: 100%;
+}
+
+.instructor-info, .car-info, .lessons-info {
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+    color: #1f2937;
+    margin: 0 0 0.5rem;
+}
+
+p {
+    margin: 0 0 1rem;
+}
+
+ul {
+    list-style: disc;
+    padding-left: 3rem;
+    margin: 0 0 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+td {
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: center;
+    min-height: 30%;
+}
+
+.hero-logo {
+    padding: 2.5rem 2.5rem 5rem;
+    max-width: 800px;
+    height: 40%;
+}
+
+.content-area {
+    width: 100%;
+    max-width: 1024px;
+}
+
+.section-block {
+    margin: 1.75rem 1.5rem;
+}
+
+.enquiry-block p {
+    text-align: center;
+}
+
+h1#enquiry {
+    font-size: 2.5rem;
+}
+
+p#enquiry-paragraph {
+    margin-bottom: 1rem;
+}
+
+.info-section {
+    margin: 2rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cta-buttons {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.contact-section {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nzide-blurb {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.contact-info span {
+    margin-right: 0.5rem;
+    line-height: 2rem;
+}
+
+.contact-info span:last-child {
+    margin-top: 1rem;
+}
+
+.info-heading {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    padding: 0 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.button {
+    display: inline-block;
+    margin: 0.5rem 0.75rem 0;
+    background-color: #2563eb;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.section-title {
+    font-size: 2rem;
+    line-height: 1.75rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.instructor-info, .car-info, .lessons-info, .times-info {
+    margin: 1rem 0.75rem 1rem 0;
+}
+
+.instructor-text p, .car-text p, .lessons-text p, .times-info p, .review-section p {
+    font-size: 1rem;
+    line-height: 2rem;
+    margin-right: 0.5rem;
+}
+
+.review-section {
+    margin: 1.75rem 1.5rem 1rem;
+    text-align: center;
+}
+
+.review-nav {
+    margin: 0 1.5rem 1.75rem;
+    display: flex;
+    justify-content: center;
+}
+
+.review-nav button {
+    padding: 0.25rem 0.75rem;
+    width: 150px;
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    cursor: pointer;
+}
+
+.review-nav button:first-child {
+    margin-right: 0.75rem;
+}
+
+.review-height {
+    height: 400px;
+    overflow-y: auto;
+}
+
+/* --- Desktop/Medium Breakpoint --- */
+@media (min-width: 768px) {
+    .hero-section { height: 80vh; }
+    .hero-content { min-height: 40%; }
+    .info-heading { font-size: 2rem; }
+    .button-sms { display: none; }
+    .button-email { font-size: 24px; }
+    .contact-info {
+        flex-direction: row;
+        align-content: space-between;
+    }
+    .contact-info span {
+        flex-grow: 1;
+    }
+    .nzide-blurb p {
+        font-size: 1rem;
+    }
+    .multi-img-container .multi-img {
+        width: 50%;
+        flex: 1;
+    }
+
+    .contact-info span:last-child { margin-top: 0; }
+
+    .instructor-info, .car-info, .lessons-info, .nzide-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 2.5rem;
+    }
+
+    .instructor-img { width: 68%; margin-bottom: 0; }
+    .car-img, .lessons-img { width: 500px; }
+    .multi-img-container { flex-direction: row; min-height: 300px; margin-bottom: 0; }
+
+    h1, h2 { font-size: 2.5rem; }
+    .section-title { font-size: 64px; line-height: 1.2; }
+    p, ul, .instructor-text p, .car-text p, .lessons-text p, .times-info p, .review-section p {
+        font-size: 24px;
+    }
+}
+/* Form-specific styling to match the site's clean aesthetic */
+.form-section {
+    max-width: 600px;
+    margin: 1rem auto;
+}
+@media (max-width: 767px) {
+    .form-section {
+        margin: 1rem 1rem;
+    }
+
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #f9fafb;
+    transition: border-color 0.2s;
+}
+.form-control:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: #fff;
+}
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+.form-help {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.submit-container {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+/* Re-using the button style but overriding for the form submit */
+.submit-btn {
+    border: none;
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Pronouns "Other" free-form input - hidden by default, revealed via CSS :has() */
+.pronouns-other-field {
+    display: none;
+    margin-top: 0.5rem;
+}
+.pronouns-group:has(select option[value="OtherPronoun"]:checked) .pronouns-other-field {
+    display: block;
+}
+.table-scroll-container { max-height: 650px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: 8px; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+thead th { position: sticky; top: 0; background: #f9fafb; z-index: 10;
+           padding: 0.75rem 1rem; text-align: left; border-bottom: 2px solid #e5e7eb;
+           color: #4b5563; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.full-cell-editor { padding: 0 !important; overflow: hidden; }
+.full-cell-editor textarea { width: 100%; border: none; padding: 1rem; display: block;
+                             resize: vertical; font-family: inherit; font-size: 0.95rem;
+                             outline: none; background: transparent; min-height: 100px;
+                             box-sizing: border-box; margin: 0; }
+.full-cell-editor textarea:focus { background: #f0f9ff; }
+.action-btn { background: transparent; border: none; cursor: pointer;
+              font-size: 1.1rem; padding: 0.4rem; border-radius: 4px; transition: all 0.2s;
+              display: inline-flex; align-items: center; justify-content: center; }
+.btn-add { color: #9ca3af; }
+.btn-add:hover { color: #10b981; background: #ecfdf5; }
+.header-add { background: #10b981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 1rem; }
+.header-add:hover { background: #059669; }
+.btn-del { color: #9ca3af; }
+.btn-del:hover { color: #ef4444; background: #fee2e2; }
+.name-input { border: none; width: 100%; font-weight: 500; outline: none; padding: 1rem; box-sizing: border-box; }
+.action-container { display: flex; gap: 4px; justify-content: center; align-items: center; }
