@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/reviews.json")
+    fetch("/api/reviews")
         .then((response) => response.json())
         .then((reviews) => {
             console.log(reviews);

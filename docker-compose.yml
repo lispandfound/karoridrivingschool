@@ -1,22 +1,16 @@
 services:
   caddy:
-    profiles:
-      - test
     image: docker.io/caddy:latest
     ports:
       - "8080:80"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ./website:/srv
-      # IMPORTANT: Map your existing VPS certs here
-      # Replace '/var/lib/caddy/.local/share/caddy' with your actual VPS path
-      # - /var/lib/caddy/.local/share/caddy:/data
     depends_on:
       - app
 
   app:
-    # build: .
-    image: ghcr.io/lispandfound/karoridrivingschool:latest
+    build: .
     ports:
       - "127.0.0.1:3000:3000" # Bind to localhost ONLY for security
     cap_add:
@@ -30,13 +24,13 @@ services:
         target: /run/secrets/msmtp_config
     volumes:
       - logs:/logs
+
   mailpit:
     image: docker.io/axllent/mailpit:latest
-    profiles:
-      - test
     ports:
       - "8025:8025"
       - "1025:1025"
+
 secrets:
   msmtp_config:
     file: ./msmtprc
