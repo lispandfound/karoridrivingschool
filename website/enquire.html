@@ -44,7 +44,14 @@
               <input type="text" id="pronounsOther" name="pronounsOther" class="form-control pronouns-other-field" placeholder="e.g. They/Them" />
             </div>
 
-            <input type="hidden" id="studentOrAdult" name="studentOrAdult" value="Adult">
+            <div class="form-group">
+              <label class="form-label" for="studentOrAdult">Are you a student or an adult?</label>
+              <select id="studentOrAdult" name="studentOrAdult" class="form-control" required>
+                <option value="" disabled selected>Select...</option>
+                <option value="Student">Student</option>
+                <option value="Adult">Adult</option>
+              </select>
+            </div>
 
             <div class="form-group">
               <label class="form-label" for="age">Age of student</label>
