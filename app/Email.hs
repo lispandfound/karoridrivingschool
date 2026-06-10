@@ -5,6 +5,7 @@ import Data.UUID (UUID)
 import Enquiry
 import Fmt
 import Lucid
+import Network.HTTP.Types.URI (urlEncode)
 import System.Random (randomIO)
 import Text.Email.Parser (EmailAddress, toByteString)
 
@@ -44,20 +45,27 @@ enquiryTemplate (Enquiry{..}) = do
 
             table_ [style_ "width: 100%; border-collapse: collapse; max-width: 600px;"] $ do
                 row "Full Name" fullName
-                row "Mobile" (unPhoneNumber mobileNumber)
-                row "Email" ((decodeUtf8 . toByteString) emailAddress)
-                row "Suburb" suburb
+                forM_ preferredName $ \pn ->
+                    unless (T.null pn) (row "Preferred Name" pn)
+                rowHtml "Mobile" $ a_ [href_ ("sms:" <> unPhoneNumber mobileNumber), style_ "color: #1a73e8;"] (toHtml (unPhoneNumber mobileNumber))
+                rowHtml "Email" $ a_ [href_ ("mailto:" <> emailText), style_ "color: #1a73e8;"] (toHtml emailText)
+                rowHtml "Pick-up Address" $ a_ [href_ mapsUrl, style_ "color: #1a73e8;"] (toHtml pickupAddress)
                 row "Licence" (show licence)
                 row "Age" ((show . unAge) age)
                 row "Experience" (showDrivingExperience drivingExperience)
                 row "Pronouns" (showPronouns pronouns)
                 row "Student or Adult" (showStudentOrAdult studentOrAdult)
+                forM_ invoiceContact $ \contact ->
+                    unless (T.null contact) (row "Invoice Contact (if different)" contact)
 
             unless (T.null info) $ do
                 hr_ []
                 h3_ "Additional Info"
                 div_ [style_ "background: #f9f9f9; padding: 15px; border-left: 4px solid #ccc;"] $
                     toHtml info
+  where
+    mapsUrl = "https://www.google.com/maps/search/?api=1&query=" <> (decodeUtf8 . urlEncode True . encodeUtf8) pickupAddress
+    emailText = (decodeUtf8 . toByteString) emailAddress
 
 asEmail :: EmailAddress -> Enquiry -> Text
 asEmail to enquiry@(Enquiry{fullName = fullName}) =
@@ -69,6 +77,11 @@ row :: Text -> Text -> Html ()
 row label value = tr_ $ do
     td_ [style_ "padding: 8px; border-bottom: 1px solid #eee; font-weight: bold; width: 30%;"] (toHtml label)
     td_ [style_ "padding: 8px; border-bottom: 1px solid #eee;"] (toHtml value)
+
+rowHtml :: Text -> Html () -> Html ()
+rowHtml label content = tr_ $ do
+    td_ [style_ "padding: 8px; border-bottom: 1px solid #eee; font-weight: bold; width: 30%;"] (toHtml label)
+    td_ [style_ "padding: 8px; border-bottom: 1px solid #eee;"] content
 
 getEmailID :: (MonadIO m) => m UUID
 getEmailID = liftIO (randomIO :: IO UUID)
