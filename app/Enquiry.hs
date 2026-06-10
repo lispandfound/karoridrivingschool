@@ -36,12 +36,13 @@ data Enquiry = Enquiry
     { fullName :: Text
     , mobileNumber :: PhoneNumber
     , emailAddress :: EmailAddress
-    , suburb :: Text
+    , pickupAddress :: Text
     , licence :: Licence
     , age :: Age
     , drivingExperience :: Experience
     , pronouns :: Pronouns
     , studentOrAdult :: StudentOrAdult
+    , invoiceContact :: Maybe Text
     , info :: Text
     }
     deriving (Show)
@@ -52,12 +53,13 @@ instance FromForm Enquiry where
             <$> lookupOrMissing "fullName" f
             <*> parseP "mobileNumber" phoneNumberP f
             <*> parseP "emailAddress" emailP f
-            <*> lookupOrMissing "suburb" f
+            <*> lookupOrMissing "pickupAddress" f
             <*> parseP "licence" licenceP f
             <*> parseP "age" ageP f
             <*> parseP "experience" experienceP f
             <*> parsePronounsF f
             <*> parseP "studentOrAdult" studentOrAdultP f
+            <*> lookupMaybe "invoiceContact" f
             <*> (fmap (fromMaybe mempty) . lookupMaybe "info") f
 
 parsePronounsF :: Form -> Either Text Pronouns
@@ -83,7 +85,7 @@ fieldLabel "age" = "Age"
 fieldLabel "licence" = "Licence"
 fieldLabel "experience" = "Experience"
 fieldLabel "fullName" = "Full Name"
-fieldLabel "suburb" = "Suburb"
+fieldLabel "pickupAddress" = "Pick-up Address"
 fieldLabel "pronouns" = "Pronouns"
 fieldLabel "studentOrAdult" = "Student or Adult"
 fieldLabel f = f
