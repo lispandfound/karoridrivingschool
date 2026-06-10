@@ -72,7 +72,7 @@ parsePronounsF f = do
         _ -> parseP "pronouns" pronounsP f
 
 parseP :: Text -> Parser a -> Form -> Either Text a
-parseP l p = (>>= first (const (fieldHint l)) . parse p mempty) . lookupOrMissing l
+parseP l p = (first (const (fieldHint l)) . parse p mempty) <=< lookupOrMissing l
 
 lookupOrMissing :: Text -> Form -> Either Text Text
 lookupOrMissing l = first (const (missingField l)) . lookupUnique l

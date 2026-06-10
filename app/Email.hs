@@ -46,18 +46,17 @@ enquiryTemplate (Enquiry{..}) = do
             table_ [style_ "width: 100%; border-collapse: collapse; max-width: 600px;"] $ do
                 row "Full Name" fullName
                 forM_ preferredName $ \pn ->
-                    row "Preferred Name" pn
+                    unless (T.null pn) (row "Preferred Name" pn)
                 rowHtml "Mobile" $ a_ [href_ ("sms:" <> unPhoneNumber mobileNumber), style_ "color: #1a73e8;"] (toHtml (unPhoneNumber mobileNumber))
                 rowHtml "Email" $ a_ [href_ ("mailto:" <> emailText), style_ "color: #1a73e8;"] (toHtml emailText)
-                row "Pick-up Address" pickupAddress
-                rowHtml "Google Maps" $ a_ [href_ mapsUrl, style_ "color: #1a73e8;"] "View on Google Maps"
+                rowHtml "Pick-up Address" $ a_ [href_ mapsUrl, style_ "color: #1a73e8;"] (toHtml pickupAddress)
                 row "Licence" (show licence)
                 row "Age" ((show . unAge) age)
                 row "Experience" (showDrivingExperience drivingExperience)
                 row "Pronouns" (showPronouns pronouns)
                 row "Student or Adult" (showStudentOrAdult studentOrAdult)
                 forM_ invoiceContact $ \contact ->
-                    row "Invoice Contact (if different)" contact
+                    unless (T.null contact) (row "Invoice Contact (if different)" contact)
 
             unless (T.null info) $ do
                 hr_ []
