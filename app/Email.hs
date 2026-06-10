@@ -5,6 +5,7 @@ import Data.UUID (UUID)
 import Enquiry
 import Fmt
 import Lucid
+import Network.HTTP.Types.URI (urlEncode)
 import System.Random (randomIO)
 import Text.Email.Parser (EmailAddress, toByteString)
 
@@ -62,7 +63,7 @@ enquiryTemplate (Enquiry{..}) = do
                 div_ [style_ "background: #f9f9f9; padding: 15px; border-left: 4px solid #ccc;"] $
                     toHtml info
   where
-    mapsUrl = "https://www.google.com/maps/search/?api=1&query=" <> T.replace " " "+" pickupAddress
+    mapsUrl = "https://www.google.com/maps/search/?api=1&query=" <> (decodeUtf8 . urlEncode True . encodeUtf8) pickupAddress
 
 asEmail :: EmailAddress -> Enquiry -> Text
 asEmail to enquiry@(Enquiry{fullName = fullName}) =
