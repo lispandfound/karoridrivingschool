@@ -45,8 +45,8 @@ enquiryTemplate (Enquiry{..}) = do
 
             table_ [style_ "width: 100%; border-collapse: collapse; max-width: 600px;"] $ do
                 row "Full Name" fullName
-                row "Mobile" (unPhoneNumber mobileNumber)
-                row "Email" ((decodeUtf8 . toByteString) emailAddress)
+                rowHtml "Mobile" $ a_ [href_ ("sms:" <> unPhoneNumber mobileNumber), style_ "color: #1a73e8;"] (toHtml (unPhoneNumber mobileNumber))
+                rowHtml "Email" $ a_ [href_ ("mailto:" <> emailText), style_ "color: #1a73e8;"] (toHtml emailText)
                 row "Pick-up Address" pickupAddress
                 rowHtml "Google Maps" $ a_ [href_ mapsUrl, style_ "color: #1a73e8;"] "View on Google Maps"
                 row "Licence" (show licence)
@@ -64,6 +64,7 @@ enquiryTemplate (Enquiry{..}) = do
                     toHtml info
   where
     mapsUrl = "https://www.google.com/maps/search/?api=1&query=" <> (decodeUtf8 . urlEncode True . encodeUtf8) pickupAddress
+    emailText = (decodeUtf8 . toByteString) emailAddress
 
 asEmail :: EmailAddress -> Enquiry -> Text
 asEmail to enquiry@(Enquiry{fullName = fullName}) =
