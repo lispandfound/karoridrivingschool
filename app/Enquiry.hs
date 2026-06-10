@@ -34,6 +34,7 @@ data StudentOrAdult = Student | Adult deriving (Show)
 
 data Enquiry = Enquiry
     { fullName :: Text
+    , preferredName :: Maybe Text
     , mobileNumber :: PhoneNumber
     , emailAddress :: EmailAddress
     , pickupAddress :: Text
@@ -51,6 +52,7 @@ instance FromForm Enquiry where
     fromForm f =
         Enquiry
             <$> lookupOrMissing "fullName" f
+            <*> lookupMaybe "preferredName" f
             <*> parseP "mobileNumber" phoneNumberP f
             <*> parseP "emailAddress" emailP f
             <*> lookupOrMissing "pickupAddress" f
